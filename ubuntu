@@ -1,0 +1,2 @@
+断点续传：
+  rsync  -av  --bwlimit=50000  --progress --inplace /media/ubuntu/newharddisk root@192.168.3.120:/mnt/data2
