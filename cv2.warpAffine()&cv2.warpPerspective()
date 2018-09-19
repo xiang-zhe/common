@@ -1,0 +1,32 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = cv2.imread('flower.jpg')
+rows,cols = img.shape[:2]
+pts1 = np.float32([[50,50],[200,50],[50,200]])
+pts2 = np.float32([[10,100],[200,50],[100,250]])
+M = cv2.getAffineTransform(pts1,pts2)
+res = cv2.warpAffine(img,M,(rows,cols))
+plt.subplot(121)
+plt.imshow(img)
+plt.subplot(122)
+plt.imshow(res)
+
+
+
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = cv2.imread('flower.jpg')
+rows,cols = img.shape[:2]
+pts1 = np.float32([[56,65],[238,52],[28,237],[239,240]])
+pts2 = np.float32([[0,0],[200,0],[0,200],[200,200]])
+M = cv2.getPerspectiveTransform(pts1,pts2)
+res = cv2.warpPerspective(img,M,(200,200))
+plt.subplot(121)
+plt.imshow(img)
+plt.subplot(122)
+plt.imshow(res)
