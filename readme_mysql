@@ -1,0 +1,69 @@
+pymysql：
+  fetchall()：返回的数据格式是tuple形式的((2, 'male', 'xiaoli'), (3, 'female', 'xiaohua'))
+  fetchone()：返回的数据格式是tuple形式的(2, 'male', 'xiaoli')
+  
+  cursorclass = pymysql.cursors.DictCursor   指定返回数据为字典形式
+  fetchall()：返回的数据格式是list形式的[{'id': 2, 'sex': 'male', 'name': 'xiaoli'}, {'id': 3, 'sex': 'female', 'name': 'xiaohua'}]
+  fetchone()：返回的数据格式是元组形式的(可以用cursorclass = pymysql.cursors.DictCursor改成字典的形式){'id': 2, 'sex': 'male', 'name': 'xiaoli'}
+
+mysql
+  复制库结构： 复制数据库，使用mysqldump及mysql的命令组合，一次性完成复制，命令行
+    先创建：
+      mysql>CREATE DATABASE `newdb` DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
+    再复制：
+      mysqldump db1 -u root -p123456 --add-drop-table | mysql newdb -u root -p123456 
+    如果在不同主机：
+      mysqldump db1 -uroot -p123456 --add-drop-table | mysql -h 192.168.1.22 newdb -u root -p123456
+    
+  导出数据库：
+    mysqldump　数据库名　-u root　-p　>　xxx.sql
+    mysqldump -u username -p dbname > dbname.sql
+  导出数据库结构（不含数据）：
+    mysqldump --opt -d face_recognition -u root -p > face_recognition.sql
+  导出数据（不含结构）
+    mysqldump　-t　数据库名　-u root　-p　>　xxx.sql
+     
+  导入数据库：
+    mysql -u root -p
+    mysql>use 数据库
+    source d:/dbname.sql
+   
+  delete from 表名;
+  truncate table 表名;
+  不带where参数的delete语句可以删除mysql表中所有内容，使用truncate table也可以清空mysql表中所有内容。
+  效率上truncate比delete快，但truncate删除后不记录mysql日志，不可以恢复数据。
+  delete的效果有点像将mysql表中所有记录一条一条删除到删完，
+  而truncate相当于保留mysql表的结构，重新创建了这个表，所有的状态都相当于新表
+    
+
+    
+  ubuntu终端mysql操作：
+    mysql -u root -p
+    use face_recognition
+    show tables
+    update s_events set status='0' where camera_no>16
+    添加字段：
+      alter table user add COLUMN new1 VARCHAR(20) DEFAULT NULL; 
+      alter table user add COLUMN new2 VARCHAR(20) NOT NULL;
+    添加多字段：
+      alter table em_day_data add (f_day_house11 int(11),f_day_house12 int(11),f_day_house13 int(11));
+    删除字段：
+      alter table user DROP COLUMN new2;
+    修改字段：
+      //修改一个字段的类型
+        alter table user MODIFY new1 VARCHAR(10);
+      //修改一个字段的名称，此时一定要重新指定该字段的类型
+        alter table user CHANGE new1 new4 int;
+        
+    删除数据：
+      delete from table_name where id >0;
+    修改字段值： UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+      UPDATE face_recognition.s_events set status = ‘0’ where camera_no > 16； 此处要注意列名的类型
+      update camera_img_analyse set user_id = FLOOR(580 + (RAND() * 109)) where user_id is null and id < 170000;
+    批量查找替换
+      UPDATE face_recognition.s_events SET image_path = replace (image_path,'新加卷','newharddisk');
+
+
+使用format插入中文有问题：
+cur1.execute("INSERT INTO t_user (user_name,user_class,user_school,create_time) VALUES ({},{},{},now());".format(childname_, classname, schoolname)
+cur1.execute("INSERT INTO t_user (user_name,user_class,user_school,create_time) VALUES ('"+ childname_+"' , '"+ classname+"', '"+ schoolname+"',now());")

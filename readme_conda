@@ -1,0 +1,18 @@
+conda 
+  更新：
+    ./anaconda3/bin/conda update anaconda
+  
+  安装第三方库：
+    conda install pip 然后pip安装
+  若已经安装好了：
+    1，找到包依赖的所有包
+      $ pip install folium  # 前提是我已经装了一次了
+        Requirement already satisfied: folium in /usr/local/lib/python2.7/dist-packages
+        Requirement already satisfied: Jinja2 in /usr/local/lib/python2.7/dist-packages (from folium)
+    2，找到anaconda包的安装路径
+      import pandas
+      pandas.__file__
+      /home/mrlevo/anaconda2/lib/python2.7/site-packages/
+    3，复制pip的包到$ 
+      cp -r /usr/local/lib/python2.7/dist-packages/folium /home/mrlevo/anaconda2/lib/python2.7/site-packages/foliumanaconda包的路径下
+    

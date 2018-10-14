@@ -1,0 +1,5 @@
+一句话写入txt
+open('/home/LX/split_tp.txt', 'w').writelines(str(split_tp)) 如写入np.narray字符串中间有省略号，使用tuple即可
+
+Requirement already satisfied but No module named : pip的包安装路径和python的包查找路径不一致,一般是由于多个python版本导致的
+  解决方案：
