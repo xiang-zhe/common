@@ -1,2 +1,124 @@
-断点续传：
-  rsync  -av  --bwlimit=50000  --progress --inplace /media/ubuntu/newharddisk root@192.168.3.120:/mnt/data2
+
+linux 远程操作
+  ssh ubuntu@192.168.3.81
+  登录192.168.3.81电脑的ubuntu账户
+  
+  nohup：
+    远程操作加nohup时，直接远程机器运行
+  for N in {1...48}; do &done
+  for N in {1..48}; do \
+  python ~/facenet/src/align/align_dataset_mtcnn.py \
+  /mnt/data/insightfacedata/vgg2/train/ \
+  /mnt/data/insightfacedata/vgg2/train_crop160/ \
+  --image_size 182 \
+  --margin 44 \
+  --random_order \
+  --gpu_memory_fraction 0.02 & done
+
+  scp -P22 ubuntu@192.168.3.81:~/images/images_data_1/D1/20180621/10/54_35.jpeg /home/ssiwo/
+  拷贝 ubuntu@192.168.3.81文件~/images/images_data_1/D1/20180621/10/54_35.jpeg到本地/home/ssiwo/
+  文件迁移：
+    scp ubuntu@192.168.3.81:~/images/images_data_1/D1/20180621/10/54_35.jpeg /home/ssiwo/
+    scp /home/ssiwo/D1/20180621/10/54_35.jpeg ubuntu@192.168.3.81:~/images/images_data_1/
+  文件夹迁移：
+    scp -r ubuntu@192.168.3.81:~/images/images_data_1/D1/20180621/10/ /home/ssiwo/ 
+    scp -r /home/ssiwo/D1/20180621/10/ ubuntu@192.168.3.81:~/images/images_data_1/ 
+  断点续传：
+    rsync  -av  --bwlimit=50000  --progress --inplace /media/ubuntu/newharddisk root@192.168.3.120:/mnt/data2
+  
+  ubuntu拷贝文件省略操作：############################
+    cp 34_*.jpg test/D00/00000000/02/
+  重命名所有文件或文件夹：
+    文件夹头加guanahi：rename 's/^/guanhai/' *
+    文件夹尾加jelline：rename 's/$/jelline/' *
+    将所有*.nc文件中Sam3替换成Stm32：rename -v 's/Sam3/Stm32/' *.nc
+    ''里面是正则，s表示替换，
+    
+  ubuntu写入时不加sudo时，权限只能写入/home/ssiwo/
+  
+  对指定文件操作：
+    find  -name "*.mp4" -ctime -1 -exec mv {} ~/facerecodata/ \;
+    找到后缀名是.mp4的文件限制时间在1天内， 执行mv操作，后面有" \;"
+    find ./ -size 0
+    找出大小为0的文件
+  vim操作：
+    G
+      跳到zuihouyihang
+    10G
+      跳到第十行
+    :5,.d
+      删除第5行到当前行（10行）
+    
+    删除未保存副本：
+      rm .tmp.swp
+    强制退出：
+  
+  x2go界面安装
+    server端：
+      sudo apt-get install python-software-properties software-properties-common
+      sudo apt-add-repository -y ppa:x2go/stable
+      sudo apt-get update
+      sudo apt-get install x2goserver x2goserver-xsession
+      sudo apt-get install xfce4
+      reboot
+    client端：
+      sudo apt-add-repository ppa:x2go/stable 
+      sudo apt-get update 
+      sudo apt-get install x2goclient
+
+NVIDIA
+  搜索nvidia ... settings
+  查看驱动是否装好
+  
+  watch -n 3 nvidia-smi 
+  实时查看显卡占用率
+  
+  cuda装了9.0但是仍然调用8.0：
+    sudo ln -s libcurand.so.9.0 libcurand.so.8.0
+    依次修改这5项libcublas libcusolver...
+    https://stackoverflow.com/questions/46595292/virtualenv-tensorflow-with-nvidia-gpu-cuda-9-0-vs-cuda-8-0-cudnn-7-0-vs-cudnn
+ubuntu：查看进程：
+  top查看
+  ps -e查看
+  kill 0000结束0000进程
+  killall结束所有进程
+  killall firefox结束火狐进程
+  
+  ps aux|grep python
+ 
+ 
+查看空间状态：
+  df -hT 可查看ext类型
+  df -hl
+查看目录大小：
+  du -hs 目录
+  du -sk filename
+文件大小排序：
+  du -sh * | sort -n 统计当前文件夹(目录)大小，并按文件大小排序
+
+查看文件数：
+  ls | wc -w 文件夹数 ls -lR| grep "^d" | wc -l 
+  ls | wc -c 文件数 ls -lR |grep "^-"| grep ".jpg" |wc -l 
+  
+  ls -lR| grep "^d" | wc -l 子文件夹数
+  ls -lR |grep "^-"| grep ".jpg" |wc -l
+  
+查看传输速度和状态：
+  dstat
+  
+取消硬盘挂载: umount  /dev/sdd1
+查看位置 fdisk -l 用df -h查看的位置可能不一样
+重新挂载: mount /dev/sdd1 /mnt/data
+  
+python虚拟环境：
+  pip install virtualenv
+  whereis python3
+    /home/ssiwo/anaconda3/bin/python3
+  virtualenv -p /home/ssiwo/anaconda3/bin/python3 venv_LX
+  source venv_LX/bin/activate　
+  . venv_LX/bin/deactivate
+
+
+
+
+
