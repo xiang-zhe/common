@@ -3,3 +3,7 @@ open('/home/LX/split_tp.txt', 'w').writelines(str(split_tp)) 如写入np.narray�
 
 Requirement already satisfied but No module named : pip的包安装路径和python的包查找路径不一致,一般是由于多个python版本导致的
   解决方案：
+
+python 默认设置
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 100
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 150
