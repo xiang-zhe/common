@@ -1,0 +1,72 @@
+# read a pic
+import cv2 
+img = cv2.imread('./0.png') 
+cv2.namedWindow("enhanced",0)
+cv2.resizeWindow("enhanced", 640, 480)
+cv2.imshow('enhanced', img) 
+k = cv2.waitKey(0)
+## k = cv2.waitKey(0) & 0xFF  # 64位机器
+if k == 27:         # 按下esc时，退出
+    cv2.destroyAllWindows()
+    
+    
+    
+#rotate a pic
+import cv2
+from math import *
+import numpy as np
+ 
+img = cv2.imread("./0.png")
+height,width=img.shape[:2]
+degree=42.5
+#旋转后的尺寸
+heightNew=int(width*fabs(sin(radians(degree)))+height*fabs(cos(radians(degree))))
+widthNew=int(height*fabs(sin(radians(degree)))+width*fabs(cos(radians(degree))))
+matRotation=cv2.getRotationMatrix2D((width/2,height/2),degree,1)
+matRotation[0,2] +=(widthNew-width)/2 #重点在这步，目前不懂为什么加这步
+matRotation[1,2] +=(heightNew-height)/2 #重点在这步
+imgRotation=cv2.warpAffine(img,matRotation,(widthNew,heightNew),borderValue=(255,255,255))
+cv2.imshow("img",img)
+cv2.imshow("imgRotation",imgRotation)
+cv2.imwrite('./rot.png', imgRotation)
+k = cv2.waitKey(0)
+if k == 27:         # 按下esc时，退出
+    cv2.destroyAllWindows()
+    
+    
+    
+#draw line
+import cv2
+img = cv2.imread('./0.png')
+red = (0, 0, 255)
+green = （0, 255, 0）
+cv2.line(img, (225, 0), (952, 699), red, 3)
+cv2.line(img, (225, 0), (553, 307), green, 3)
+cv2.line(img, (225, 0), (952, 699), green, 3)
+cv2.imshow("img", img)
+k = cv2.waitKey(0)
+if k == 27:         # 按下esc时，退出
+    cv2.destroyAllWindows()
+    
+    
+    
+#warpPerspective image
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = cv2.imread('./0.png')
+rows,cols = img.shape[:2]
+pts1 = np.float32([[505,248],[484,264],[530,307],[553,289]])
+pts2 = np.float32([[516,393],[493,415],[530,457],[555,436]])
+M = cv2.getPerspectiveTransform(pts1,pts2)
+print(M)
+print(img.shape)
+res = cv2.warpPerspective(img,M, (img.shape[1],img.shape[0]))
+cv2.namedWindow("enhanced",0)
+cv2.resizeWindow("enhanced", 640, 480)
+cv2.imwrite('./02.png', res)
+plt.subplot(121)
+plt.imshow(img)
+plt.subplot(122)
+plt.imshow(res)
