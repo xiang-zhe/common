@@ -7,3 +7,16 @@ Requirement already satisfied but No module named : pip的包安装路径和pyth
 python 默认设置
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 100
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 150
+
+
+python pip安装源修改
+临时方法：
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflow-gpu
+永久方法：
+Linux下，修改 ~/.pip/pip.conf (没有就创建一个文件夹及文件。文件夹要加“.”，表示是隐藏文件夹)，内容如下：
+  [global]
+  index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+  [install]
+  trusted-host=mirrors.aliyun.com
+
+
