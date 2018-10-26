@@ -41,6 +41,7 @@ linux 远程操作
     找到后缀名是.mp4的文件限制时间在1天内， 执行mv操作，后面有" \;"
     find ./ -size 0
     找出大小为0的文件
+    
   vim操作：
     G
       跳到zuihouyihang
@@ -52,7 +53,9 @@ linux 远程操作
     删除未保存副本：
       rm .tmp.swp
     强制退出：
-  
+      :w !sudo tee %
+      
+      
   x2go界面安装
     server端：
       sudo apt-get install python-software-properties software-properties-common
