@@ -1,0 +1,19 @@
+NVIDIA
+  搜索nvidia ... settings
+  查看驱动是否装好
+  
+  watch -n 3 nvidia-smi 
+  实时查看显卡占用率
+  
+  cuda装了9.0但是仍然调用8.0：
+    sudo ln -s libcurand.so.9.0 libcurand.so.8.0
+    依次修改这5项libcublas libcusolver...
+    https://stackoverflow.com/questions/46595292/virtualenv-tensorflow-with-nvidia-gpu-cuda-9-0-vs-cuda-8-0-cudnn-7-0-vs-cudnn
+    
+cudnn
+  include/darknet.h:16:23: fatal error: cudnn.h: 没有那个文件或目录
+  compilation terminated.
+  Makefile:89: recipe for target 'obj/gemm.o' failed
+  make: *** [obj/gemm.o] Error 1
+  ::::是因为缺乏头文件cudnn.h，需要将其复制。进入所在目录/cuda/include（下载CUDA的默认位置，可能会有不同），运行：
+  ::::sudo cp cudnn.h /usr/include
