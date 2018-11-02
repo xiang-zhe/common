@@ -20,6 +20,11 @@ cuda
    
    It appears that an X server is running. Please exit X before installation.
    A:
+   sudo service lightdm stop
+   ctrl+alt+F1 进入文本界面
+   install...
+   sudo service lightdm start
+   ctrl+alt+F7 返回图形界面  
    
    
 cudnn
