@@ -9,7 +9,19 @@ NVIDIA
     sudo ln -s libcurand.so.9.0 libcurand.so.8.0
     依次修改这5项libcublas libcusolver...
     https://stackoverflow.com/questions/46595292/virtualenv-tensorflow-with-nvidia-gpu-cuda-9-0-vs-cuda-8-0-cudnn-7-0-vs-cudnn
-    
+
+
+cuda
+   Not enough space on parition mounted at /tmp.Need 5091561472 bytes.
+   Disk space check has failed. Installation cannot continue.
+   A:
+   sudo mkdir /opt/tmp         #在根目录下的opt文件夹中新建tmp文件夹，用作安装文件的临时文件夹
+   sudo sh cuda_8.0.44_linux.run --tmpdir=/opt/tmp/  
+   
+   It appears that an X server is running. Please exit X before installation.
+   A:
+   
+   
 cudnn
   include/darknet.h:16:23: fatal error: cudnn.h: 没有那个文件或目录
   compilation terminated.
