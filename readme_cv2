@@ -1,4 +1,6 @@
   QObject::moveToThread: Current thread (0x1e6de60) is not the object's thread (0x27568a0).
   Cannot move to target thread (0x1e6de60)
-    A:
+    A:https://github.com/skvark/opencv-python/issues/46 
+    安装opencv-python-headless without GUI
+    尚未解决
     
