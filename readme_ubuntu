@@ -74,6 +74,7 @@ ubuntu：查看进程：
   top查看
   ps -e查看
   kill 0000结束0000进程
+  kill -9 0000有时进程无法在PID中找到，STAT 显示Tl，仍然占用着GPU内存
   killall结束所有进程
   killall firefox结束火狐进程
   
