@@ -36,6 +36,9 @@ linux 远程操作
     
   ubuntu写入时不加sudo时，权限只能写入/home/ssiwo/
   
+  apt-get安装错误时，
+     sudo apt-get install -f 修复
+  
   对指定文件操作：
     find  -name "*.mp4" -ctime -1 -exec mv {} ~/facerecodata/ \;
     找到后缀名是.mp4的文件限制时间在1天内， 执行mv操作，后面有" \;"
@@ -68,7 +71,7 @@ linux 远程操作
       sudo apt-add-repository ppa:x2go/stable 
       sudo apt-get update 
       sudo apt-get install x2goclient
-
+    
 
 ubuntu：查看进程：
   top查看
