@@ -21,3 +21,24 @@ Linux下，修改 ~/.pip/pip.conf (没有就创建一个文件夹及文件。文
   trusted-host=mirrors.aliyun.com
 
 
+array写入config：
+  cfg = json.dumps(arr.tolist())
+读取
+  np.array(json.loads(cfg))
+
+全局变量和局部变量: 在函数中变量未被赋新值时，认为是全局变量，如被赋新值就是局部变量，使用前需要线定义
+  in:
+    x = 1
+    def s():
+        print(x, x+1)
+    s()
+  out:
+    1
+  in:
+    x = 1
+    def s():
+        print(x)
+        x = x + 1
+    s()
+  out:
+    UnboundLocalError: local variable 'x' referenced before assignment
