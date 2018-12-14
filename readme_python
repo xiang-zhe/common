@@ -14,7 +14,11 @@ python pip安装源修改
 临时方法：
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflow-gpu
 永久方法：
-Linux下，修改 ~/.pip/pip.conf (没有就创建一个文件夹及文件。文件夹要加“.”，表示是隐藏文件夹)，内容如下：
+创建配置文件：mkdir ~/.pip3(ubuntu pip指向的是Python2，我是为pip3指定镜像源)
+cd ~/.pip3
+touch pip3.conf
+编辑文件：sudo gedit ~/.pip3/pip3.conf
+
   [global]
   index-url = https://pypi.tuna.tsinghua.edu.cn/simple
   [install]
