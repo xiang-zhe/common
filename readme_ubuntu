@@ -106,6 +106,9 @@ ubuntu：查看进程：
 取消硬盘挂载: umount  /dev/sdd1
 查看位置 fdisk -l 用df -h查看的位置可能不一样
 重新挂载: mount /dev/sdd1 /mnt/data
+
+更改目录用户组：
+  sudo chown -R xiang 目录名/
   
 python虚拟环境：
   pip install virtualenv
