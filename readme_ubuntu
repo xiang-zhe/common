@@ -3,6 +3,19 @@ linux 远程操作
   ssh ubuntu@192.168.3.81
   登录192.168.3.81电脑的ubuntu账户
   
+  x2go界面安装
+    server端：
+      sudo apt-get install python-software-properties software-properties-common
+      sudo apt-add-repository -y ppa:x2go/stable
+      sudo apt-get update
+      sudo apt-get install x2goserver x2goserver-xsession
+      sudo apt-get install xfce4
+      reboot
+    client端：
+      sudo apt-add-repository ppa:x2go/stable 
+      sudo apt-get update 
+      sudo apt-get install x2goclient
+  
   nohup：
     远程操作加nohup时，直接远程机器运行
   for N in {1...48}; do &done
@@ -59,18 +72,7 @@ linux 远程操作
       :w !sudo tee %
       
       
-  x2go界面安装
-    server端：
-      sudo apt-get install python-software-properties software-properties-common
-      sudo apt-add-repository -y ppa:x2go/stable
-      sudo apt-get update
-      sudo apt-get install x2goserver x2goserver-xsession
-      sudo apt-get install xfce4
-      reboot
-    client端：
-      sudo apt-add-repository ppa:x2go/stable 
-      sudo apt-get update 
-      sudo apt-get install x2goclient
+
     
 
 ubuntu：查看进程：
@@ -122,5 +124,12 @@ python虚拟环境：
 ubuntu装机：
   extraiso写的系统没有boot区，efi替代
   开机输入密码后无法进人，禁用系带显卡nueovous
-
+  进入grub，按e进入编辑模式，加nomodeset，启动后禁用 nouveau
+  sudo gedit /etc/modprobe.d/blacklist-nouveau.conf
+  写入
+  blacklist nouveau
+  options nouveau modeset=0
+  更新
+  sudo update-initramfs -u
+  重装nvidia驱动
 
