@@ -31,6 +31,8 @@ linux 远程操作
   cat >~/facedata/logs/facenet/nohup_output20180814
   tail -f >~/facedata/logs/facenet/nohup_output20180814 保存nohup和即时打印
   
+  & 和 &&：
+    命令行中，&是并行，&& 是先后运行
 
   scp -P22 ubuntu@192.168.3.81:~/images/images_data_1/D1/20180621/10/54_35.jpeg /home/ssiwo/
   拷贝 ubuntu@192.168.3.81文件~/images/images_data_1/D1/20180621/10/54_35.jpeg到本地/home/ssiwo/
