@@ -89,6 +89,9 @@ ubuntu：查看进程：
   killall结束所有进程
   killall firefox结束火狐进程
   
+  ps -ef | grep python | cut -c 9-15| xargs kill -s 9
+
+  
   ps aux|grep python
  
  
