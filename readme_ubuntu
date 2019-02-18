@@ -133,8 +133,8 @@ python虚拟环境：
 由于/bin 不在PATH 环境变量中，故无法找到该命令
   cd /etc
   /usr/bin/sudo /usr/bin/vi profile
-  在末尾加上export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-
+  在末尾加上：export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+  使生效：source ～/.bashrc
 
 ubuntu装机：
   extraiso写的系统没有boot区，efi替代
