@@ -15,6 +15,7 @@ linux 远程操作
       sudo apt-add-repository ppa:x2go/stable 
       sudo apt-get update 
       sudo apt-get install x2goclient
+    登录使用XFCE，kde不行
   
   nohup：
     远程操作加nohup时，直接远程机器运行
