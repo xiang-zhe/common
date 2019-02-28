@@ -1,2 +1,5 @@
 1, install
   https://docs.docker.com/install/linux/docker-ce/ubuntu/
+2, nvidia-docker
+  https://github.com/NVIDIA/nvidia-docker
+Q:
