@@ -28,7 +28,23 @@ Q:
         
   2  docker-nvidia：未找到命令
     A: nvidia-docker
+    
+  3 git cannot found commend，
+    A： apt-get update
+        apt-get install
                 
+config：
+  临时修改
+    docker run hello-world --registry-mirror=https://docker.mirrors.ustc.edu.cn
+  永久修改
+    1，修改 /etc/default/docker，加入 DOCKER_OPTS=”镜像地址”，可以有多个 http://hub-mirror.c.163.com
+    DOCKER_OPTS="--registry-mirror=https://docker.mirrors.ustc.edu.cn"
+    2，新版的 Docker 推荐使用 json 配置文件的方式，默认为 /etc/docker/daemon.json，非默认路径需要修改 dockerd 的 –config-file，在该文件中加入如下内容：
+    {
+    "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
+    }
+    
+  
 run :
   在容器中运行"echo"命令，输出"hello word"  
   $docker run image_name echo "hello word"  
