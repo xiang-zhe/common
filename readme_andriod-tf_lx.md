@@ -1,3 +1,8 @@
+##打开android studio
+    cd android-studio/bin/
+    ./studio.sh
+    
+
 #### 最快方式是下载apk直接安装，http://download.tensorflow.org/deps/tflite/TfLiteCameraDemo.apk
     安装adb
     sudo  apt-get  install android-tools-adb
