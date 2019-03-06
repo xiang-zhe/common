@@ -1,4 +1,4 @@
-##打开android studio
+## 打开android studio
     cd android-studio/bin/
     ./studio.sh
     
