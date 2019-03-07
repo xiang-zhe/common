@@ -52,7 +52,7 @@ run :
   交互式进入容器中  
   $docker run -i -t image_name /bin/bash  
     exit (ctrl+d)
-    docker attach 容器ID(再次进入)
+    docker attach 容器ID(再次进入)/如果进不去使用docker exec -it name 
     docker run --name test -it -v /home/xqh/myimage:/data ubuntu /bin/bash
     其中的 -v 标记 在容器中设置了一个挂载点 /data（就是容器中的一个目录），并将主机上的 /home/xqh/myimage 目录中的内容关联到 /data下。
 
