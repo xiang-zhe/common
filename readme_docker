@@ -34,6 +34,7 @@ Q:
         apt-get install
                 
 config：
+  
   临时修改
     docker run hello-world --registry-mirror=https://docker.mirrors.ustc.edu.cn
   永久修改
@@ -43,7 +44,22 @@ config：
     {
     "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]
     }
-    
+  修改镜像储存位置：
+    1，（无效？）
+    vim /etc/systemd/system/multi-user.target.wants/docker.service
+    修改--graph=新地址 --storage-driver=overlay
+      [Service]
+      ExecStart=
+      ExecStart=/usr/bin/dockerd --graph="/home/docker" --storage-driver=overlay
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker
+    2.（无效？）
+      vim /etc/systemd/system/multi-user.target.wants/docker.service
+      OPTIONS=--graph="/root/data/docker" -H fd://
+      # 或者
+      DOCKER_OPTS="-g /root/data/docker"
+pull：
+  直接pull总会是not found，只要加上tag就ok（：tag）
   
 run :
   在容器中运行"echo"命令，输出"hello word"  
