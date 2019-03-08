@@ -5,7 +5,7 @@ test
 
 train
 
-python main.py --phase train --dataset cityscapes --batch_size 1
+    python main.py --phase train --dataset cityscapes --batch_size 1
 
 
 
@@ -16,8 +16,8 @@ python main.py --phase train --dataset cityscapes --batch_size 1
 
 
 ##### Discriminator #####
-# Discriminator layer :  4
-# Multi-scale Dis :  3
+Discriminator layer :  4
+Multi-scale Dis :  3
 Traceback (most recent call last):
   File "/home/xiang/venv/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 510, in _apply_op_helper
     preferred_dtype=default_dtype)
