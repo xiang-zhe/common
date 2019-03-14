@@ -11,9 +11,15 @@
         
         ann["area"]中没有这个字段，但是mask_rcnn需要，https://github.com/wucng/TensorExpand/issues/2
         程序中添加 # 计算轮廓面积
+        polygon = np.array([points], dtype=np.int32)  # 这里是多边形的顶点坐标
+        #im = np.zeros(image.shape[:2], dtype="uint8")  # 获取图像的维度: (h,w)=iamge.shape[:2]
+        im = np.zeros((4000,4000), dtype="uint8") #假定一个画布
+        polygon_mask = cv2.fillPoly(im, polygon, 255)
+        annotation['area'] = float(np.sum(np.greater(polygon_mask, 0)))
+        或者'''不可用
         contour = PascalVOC2coco.change_format(annotation['segmentation'][0])
-        annotation['area']=abs(cv2.contourArea(contour,True))
-        或者'''    
+        annotation['area']=abs(cv2.contourArea(contour,True))'''
+        或者'''不可用
         poly = Polygon(points)
         annotation['area'] = round(poly.area,6)
         '''
