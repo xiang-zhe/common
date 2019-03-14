@@ -138,6 +138,17 @@ python虚拟环境：
   /usr/bin/sudo /usr/bin/vi profile
   在末尾加上：export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
   使生效：source ～/.bashrc
+修改环境变量
+  当前用户
+  gedit ~/.bashrc
+  export PATH=<你要加入的路径1>:<你要加入的路径2>: …… :$PATH
+  export PYTHONPATH=/home/zhao/setup/caffe-master/python:/home/zhao/setup/mypy:$PYTHONPATH
+  source ~/.bashrc
+  所有用户
+  sudo gedit /etc/profile 
+  export PATH=<你要加入的路径1>:<你要加入的路径2>: …… :$PATH
+  export PYTHONPATH=/home/zhao/setup/caffe-master/python:/home/zhao/setup/mypy:$PYTHONPATH
+  source ~/.bashrc
 
 ubuntu装机：
   extraiso写的系统没有boot区，efi替代
