@@ -21,13 +21,7 @@ linux 远程操作
     远程操作加nohup时，直接远程机器运行
   for N in {1...48}; do &done
   for N in {1..48}; do \
-  python ~/facenet/src/align/align_dataset_mtcnn.py \
-  /mnt/data/insightfacedata/vgg2/train/ \
-  /mnt/data/insightfacedata/vgg2/train_crop160/ \
-  --image_size 182 \
-  --margin 44 \
-  --random_order \
-  --gpu_memory_fraction 0.02 & done
+  python ~/facenet/src/align/align_dataset_mtcnn.py  & done
   nohup （） >~/facedata/logs/facenet/nohup_output20180814 2>&1 &
   cat >~/facedata/logs/facenet/nohup_output20180814
   tail -f >~/facedata/logs/facenet/nohup_output20180814 保存nohup和即时打印
