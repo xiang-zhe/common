@@ -24,7 +24,7 @@ touch pip3.conf
   [install]
   trusted-host=mirrors.aliyun.com
 
-
+286863 is not JSON serializable， np数组不可序列化，转格式即可
 array写入config：
   cfg = json.dumps(arr.tolist())
 读取
