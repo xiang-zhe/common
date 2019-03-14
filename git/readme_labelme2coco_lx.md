@@ -9,6 +9,15 @@
         img = utils.img_b64_to_array(data['imageData'])
         ->img = utils.image.img_b64_to_arr(data['imageData'])
         
+        ann["area"]中没有这个字段，但是mask_rcnn需要，https://github.com/wucng/TensorExpand/issues/2
+        程序中添加 # 计算轮廓面积
+        contour = PascalVOC2coco.change_format(annotation['segmentation'][0])
+        annotation['area']=abs(cv2.contourArea(contour,True))
+        或者'''    
+        poly = Polygon(points)
+        annotation['area'] = round(poly.area,6)
+        '''
+        
 3， 
     验证json格式，https://github.com/wucng/TensorExpand/blob/master/TensorExpand/Object%20detection/Data_interface/MSCOCO/labelme%20data/visualization.py
     visualization.py
