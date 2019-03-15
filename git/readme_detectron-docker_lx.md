@@ -22,3 +22,24 @@ Q:
   2，  AssertionError: Detectron only automatically caches URLs in the Detectron S3 bucket: https://s3-us-west-2.amazonaws.com/detectron
     A：https://github.com/facebookresearch/Detectron/issues/820
     修改_DETECTRON_S3_BASE_URL = 'https://dl.fbaipublicfiles.com/detectron' in line 40 in /detectron/lib/utils/io.py
+  3，Exception encountered running PythonOp function: ValueError: could not broadcast input array from shape (4) into shape (0)
+    A: The question was from the 'NUM_CLASS' in the xxx.yaml file
+    
+    
+    
+
+官网docker：
+cd $DETECTRON/docker
+docker build -t detectron:c2-cuda9-cudnn7 .
+
+nvidia-docker run --rm -it detectron:c2-cuda9-cudnn7 python detectron/tests/test_batch_permutation_op.py
+Q：
+    Could not find a package configuration file provided by "gflags" with any
+    of the following names:
+        A:https://github.com/facebookresearch/Detectron/issues/756
+        修改dockerfile部分即可
+        添加
+        WORKDIR /detectron
+        RUN git checkout d56e267efc92b65b8d899f1b89a7ed2bca3e5f44
+        #
+        RUN pip install -r /detectron/requirements.txt
