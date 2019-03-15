@@ -4,7 +4,7 @@
 2, 
   2.1, labelme2coco.py
   能用，但是生成到json，不能使用cocoapi中visualization.py查看，key "id" error anns[ann["id']] = ann
-  里面没有生成annotation['id']字段，是num数，所有图片累加
+  里面没有生成annotation['id']字段，#这个id表示annotation的id，因为每一个图像有不止一个annotation，所以要对每一个annotation编号
   2.2, https://github.com/wucng/TensorExpand/blob/master/TensorExpand/Object%20detection/Data_interface/MSCOCO/labelme%20data/labelme2COCO.py
     labelme2coco_.py
       img = utils.img_b64_to_array(data['imageData'])
