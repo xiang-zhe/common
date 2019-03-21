@@ -156,3 +156,9 @@ ubuntu装机：
     sudo update-initramfs -u
     重装nvidia驱动
 
+百度网盘下载：
+  插件安装https://addons.mozilla.org/zh-CN/firefox/addon/baidu-pan-exporter/
+  apt-get install aria2
+  apt-get update
+  
+  
