@@ -49,6 +49,7 @@ config：
      "graph": "/mnt/docker-data", 
      "storage-driver": "overlay" 
     }
+  systemctl restart  docker
   docker info可查看到修改后的信息
   
 pull：
