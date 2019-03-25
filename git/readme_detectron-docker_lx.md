@@ -43,3 +43,7 @@ Q：
         RUN git checkout d56e267efc92b65b8d899f1b89a7ed2bca3e5f44
         #
         RUN pip install -r /detectron/requirements.txt
+    Get:23 http://us-east-1.ec2.archive.ubuntu.com/ubuntu xenial/multiverse amd64 Packages [176 kB]
+    0% [Working]
+        A:卡住不动，换源也不行，，重装镜像也不行
+        原来是/etc/apt/source.list.d的问题，删掉就好了
