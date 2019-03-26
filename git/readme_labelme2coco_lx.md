@@ -7,9 +7,9 @@
   里面没有生成annotation['id']字段，#这个id表示annotation的id，因为每一个图像有不止一个annotation，所以要对每一个annotation编号
   2.2, https://github.com/wucng/TensorExpand/blob/master/TensorExpand/Object%20detection/Data_interface/MSCOCO/labelme%20data/labelme2COCO.py
     labelme2coco_.py
-      img = utils.img_b64_to_array(data['imageData'])
+      1，img = utils.img_b64_to_array(data['imageData'])
       ->img = utils.image.img_b64_to_arr(data['imageData']）
-      ann["area"]中没有这个字段，但是mask_rcnn需要，https://github.com/wucng/TensorExpand/issues/2
+      2，ann["area"]中没有这个字段，但是mask_rcnn需要，https://github.com/wucng/TensorExpand/issues/2
       程序中添加 # 计算轮廓面积
       polygon = np.array([points], dtype=np.int32)  # 这里是多边形的顶点坐标
       #im = np.zeros(image.shape[:2], dtype="uint8")  # 获取图像的维度: (h,w)=iamge.shape[:2]
