@@ -47,3 +47,5 @@ Q：
     0% [Working]
         A:卡住不动，换源也不行，，重装镜像也不行
         原来是/etc/apt/source.list.d的问题，删掉就好了
+    3，yaml.constructor.ConstructorError: while constructing a Python instance expected a class, but found <class 'builtin_function_or_method'> in "<unicode string>", line 3, column 20: BBOX_XFORM_CLIP: !!python/object/apply:numpy.core ...
+        A:I rolled the version back to 4.2 and it works fine:     pip install pyyaml==4.2b2
