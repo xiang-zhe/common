@@ -34,7 +34,7 @@ docker build -t detectron:c2-cuda9-cudnn7 .
 
 nvidia-docker run --rm -it detectron:c2-cuda9-cudnn7 python detectron/tests/test_batch_permutation_op.py
 Q：
-    Could not find a package configuration file provided by "gflags" with any
+    1，Could not find a package configuration file provided by "gflags" with any
     of the following names:
         A:https://github.com/facebookresearch/Detectron/issues/756
         修改dockerfile部分即可
@@ -43,7 +43,7 @@ Q：
         RUN git checkout d56e267efc92b65b8d899f1b89a7ed2bca3e5f44
         #
         RUN pip install -r /detectron/requirements.txt
-    Get:23 http://us-east-1.ec2.archive.ubuntu.com/ubuntu xenial/multiverse amd64 Packages [176 kB]
+    2，Get:23 http://us-east-1.ec2.archive.ubuntu.com/ubuntu xenial/multiverse amd64 Packages [176 kB]
     0% [Working]
         A:卡住不动，换源也不行，，重装镜像也不行
         原来是/etc/apt/source.list.d的问题，删掉就好了
