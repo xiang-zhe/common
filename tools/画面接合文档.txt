@@ -1,0 +1,20 @@
+原理：主要是通过图像像素的渐变叠加处理消除接合处缝隙
+python代码如下：                   
+        srcImg =cv2.imread(src,1) #左图（基准图）
+        warpImg =cv2.imread(des,1) #右图       
+        ####    srcImg和warpImg需要处理成对应位置，即srcImg位于画面左边，右边为空;warpImg位于画面右边，左边为空    ####
+        h1,w1,c1 = srcImg.shape #w1是左图的右边界像素位置 
+        px =60 #px是左右两图要叠加部分宽度
+        alpha_ =0.5 #alpha_是中线处图像的透明度,0.5最佳
+        dst_target = np.zeros([rows, cols, 3], np.uint8) #dst_target是合成图像
+        _w = w1-int(px/2)  #_w是叠加部分中线
+        dst_target[:, :w1-px] = srcImg[:, :w1-px] #把左图非叠加部分放入
+        dst_target[:, w1:] = warpImg[:, w1:] #把右图叠加部分以右的部分放入
+        unit_alpha = (1-alpha_)/(px/2) #单位像素透明度      
+        for col in range(w1-px,_w): #从叠加部分的左端到中线的渐变处理
+            alpha = unit_alpha*float(px/2-abs(col-_w)) #该列的像素透明度
+            dst_target[:, col] = np.clip(srcImg[:, col] * (1-alpha) + warpImg[:, col] * alpha, 0, 255) #目标图像等于左图列乘以（1-透明度）+右图列乘以透明度    
+        for col in range(_w,w1): #从叠加部分的右端到中线的渐变处理
+            alpha = unit_alpha*float(px/2-abs(col-_w))           
+            dst_target[:, col] = np.clip(srcImg[:, col] * alpha + warpImg[:, col] * (1-alpha), 0, 255)
+
