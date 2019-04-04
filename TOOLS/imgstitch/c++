@@ -1,0 +1,35 @@
+//优化两图的连接处，使得拼接自然
+void OptimizeSeam(Mat& img1, Mat& trans, Mat& dst)
+{
+    int start = MIN(corners.left_top.x, corners.left_bottom.x);//开始位置，即重叠区域的左边界  
+
+    double processWidth = img1.cols - start;//重叠区域的宽度  
+    int rows = dst.rows;
+    int cols = img1.cols; //注意，是列数*通道数
+    double alpha = 1;//img1中像素的权重  
+    for (int i = 0; i < rows; i++)
+    {
+        uchar* p = img1.ptr<uchar>(i);  //获取第i行的首地址
+        uchar* t = trans.ptr<uchar>(i);
+        uchar* d = dst.ptr<uchar>(i);
+        for (int j = start; j < cols; j++)
+        {
+            //如果遇到图像trans中无像素的黑点，则完全拷贝img1中的数据
+            if (t[j * 3] == 0 && t[j * 3 + 1] == 0 && t[j * 3 + 2] == 0)
+            {
+                alpha = 1;
+            }
+            else
+            {
+                //img1中像素的权重，与当前处理点距重叠区域左边界的距离成正比，实验证明，这种方法确实好  
+                alpha = (processWidth - (j - start)) / processWidth;
+            }
+
+            d[j * 3] = p[j * 3] * alpha + t[j * 3] * (1 - alpha);
+            d[j * 3 + 1] = p[j * 3 + 1] * alpha + t[j * 3 + 1] * (1 - alpha);
+            d[j * 3 + 2] = p[j * 3 + 2] * alpha + t[j * 3 + 2] * (1 - alpha);
+
+        }
+    }
+
+}
