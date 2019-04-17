@@ -1,0 +1,18 @@
+installation(https://docs.tvm.ai/install/from_source.html#build-the-shared-library)
+1, git clone --recursive https://github.com/dmlc/tvm
+2, sudo apt-get update
+   sudo apt-get install -y python python-dev python-setuptools gcc libtinfo-dev zlib1g-dev build-essential cmake
+3, cd Path to TVM/tvm/
+   mkdir build
+   cp cmake/config.cmake build
+4, Change set(USE_CUDA OFF) to set(USE_CUDA ON) to enable CUDA backend. So do other backends and libraries (OpenCL, RCOM, METAL, VULKAN, …).
+   TVM optionally depends on LLVM. LLVM is required for CPU codegen that needs LLVM.
+   Since LLVM takes long time to build from source, you can download pre-built version of LLVM from LLVM Download Page.
+5, cd build
+   cmake ..
+   make -j4
+   
+Q&A
+Q:  Could NOT find OpenCL (missing: OpenCL_LIBRARY) (found version "1.2")
+  A:  sudo apt install ocl-icd-opencl-dev
+Q:  
