@@ -89,7 +89,7 @@ ubuntu：查看进程：
   ps -ef | grep python | cut -c 9-15| xargs kill -s 9
 
   
-  ps aux|grep python
+  ps aux|grep python（找什么grep什么）
 
 Get:23 http://us-east-1.ec2.archive.ubuntu.com/ubuntu xenial/multiverse amd64 Packages [176 kB]
 0% [Working]
