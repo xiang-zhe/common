@@ -133,6 +133,17 @@ python虚拟环境：
   source venv_LX/bin/activate　
   . venv_LX/bin/deactivate
 
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+  mv info info.bak
+  mkdir info
+  apt-get update
+  apt-get -f install 安装失败的包
+  mv info/* info.bak/
+  rm -rf info
+  mv info.bak info
+  apt-get update 
+  apt-get upgrade
+  apt-get autoremove
 
 由于/bin 不在PATH 环境变量中，故无法找到该命令
   cd /etc
