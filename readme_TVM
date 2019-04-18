@@ -15,4 +15,12 @@ installation(https://docs.tvm.ai/install/from_source.html#build-the-shared-libra
 Q&A
 Q:  Could NOT find OpenCL (missing: OpenCL_LIBRARY) (found version "1.2")
   A:  sudo apt install ocl-icd-opencl-dev
-Q:  
+Q: vulkan
+  A:
+Q:  ROCM
+  A: https://rocm.github.io/ROCmInstall.html#ubuntu-support---installing-from-a-debian-repository
+  wget -qO - http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | sudo apt-key add -
+  echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | sudo tee /etc/apt/sources.list.d/rocm.list
+  sudo apt update
+  sudo apt install rocm-dkms
+Q：
