@@ -190,5 +190,9 @@ per-batch-size 64，当使用4*1080ti时基本不会报错，使用3*1080ti偶�
 
 
 TVM:
+  https://github.com/deepinsight/insightface/issues/475
   data_shape = (1,3,112,112)
   target = tvm.target.create("llvm -mcpu=haswell") ----GPU model#----> target = tvm.target.cuda("llvm device=0")
+  module.run(data=input_data)
+  f1 = module.get_output(0).asnumpy()
+  
