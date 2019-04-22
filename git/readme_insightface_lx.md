@@ -188,3 +188,7 @@ per-batch-size 64，当使用4*1080ti时基本不会报错，使用3*1080ti偶�
         --pretrained /home/ubuntu/facenet_gitlab/PythonDev/project/insight_face/insightface/models/,0  --ckpt 2 --per-batch-size 64 \
         --logs ~/facedata/insightfacedata/logs >~/facedata/insightfacedata/logs/nohup_output20180903.out 2>&1 &
 
+
+TVM:
+  data_shape = (1,3,112,112)
+  target = tvm.target.create("llvm -mcpu=haswell") ----GPU model#----> target = tvm.target.cuda("llvm device=0")
