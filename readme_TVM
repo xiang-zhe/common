@@ -26,3 +26,11 @@ Q:  ROCM
 Q： llvm
   A: http://apt.llvm.org/
   apt-get install libllvm-7-ocaml-dev libllvm7 llvm-7 llvm-7-dev llvm-7-doc llvm-7-examples llvm-7-runtime
+
+
+Q: Cannot find config for target=cuda -model=unknown, workload=('conv2d'...
+  A:
+  
+Q: Direct host side access to device memory is detected in fused_nn_contrib_conv2d_winograd_weight_transform_4. Did you forget to bind?
+  A: https://discuss.tvm.ai/t/compile-failed-after-tuning/1064
+  set opt-level=2 and winograd=False
