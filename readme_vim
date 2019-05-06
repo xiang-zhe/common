@@ -1,6 +1,13 @@
-vim卡死，按键无法应，使用ctrl+q
+删除未保存副本：
+  rm .tmp.swp
+  
+强制退出：
+  :w !sudo tee %
+      
+i模式：
+    vim卡死，按键无法应，使用ctrl+q
 
-vim操作：
+normal：
     G
       跳到zuihouyihang
     10G
@@ -8,10 +15,17 @@ vim操作：
     :5,.d
       删除第5行到当前行（10行）
     
-    删除未保存副本：
-      rm .tmp.swp
-    强制退出：
-      :w !sudo tee %
 
+v模式：
+    j/k/h/l 进行文本选择 
+    d 剪切
+    y 复制
+    p 粘贴
+    ^  --------选中当前行，光标位置到行首（或者使用键盘的HOME键
+    $  --------选中当前行，光标位置到行尾（或者使用键盘的END键
     替换：
-  
+    
+ctrl+v模式
+    j/k/h/l 进行选中多列
+    Shift + i 进行 块模式下的插入
+    ESC
