@@ -24,8 +24,12 @@ Q:  ROCM
   sudo apt update
   sudo apt install rocm-dkms
 Q： llvm
-  A: http://apt.llvm.org/
+  A: http://apt.llvm.org/ （ubuntu）
   apt-get install libllvm-7-ocaml-dev libllvm7 llvm-7 llvm-7-dev llvm-7-doc llvm-7-examples llvm-7-runtime
+Q: libllvm-7-ocaml-dev : Depends: libctypes-ocaml-dev-v0kb0 but it is not installable
+   libllvm7 : Depends: libstdc++6 (>= 6) but 5.4.0-6ubuntu1~16.04.11 is to be installed
+   A: vim /etc/apt/source.list --> add ubuntu sources（http://apt.llvm.org/）
+   
 
 
 Q: Cannot find config for target=cuda -model=unknown, workload=('conv2d'...
