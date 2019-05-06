@@ -1,1 +1,17 @@
 vim卡死，按键无法应，使用ctrl+q
+
+vim操作：
+    G
+      跳到zuihouyihang
+    10G
+      跳到第十行
+    :5,.d
+      删除第5行到当前行（10行）
+    
+    删除未保存副本：
+      rm .tmp.swp
+    强制退出：
+      :w !sudo tee %
+
+    替换：
+  
