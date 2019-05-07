@@ -40,7 +40,7 @@ linux 远程操作
   断点续传：
     rsync  -av  --bwlimit=50000  --progress --inplace /media/ubuntu/newharddisk root@192.168.3.120:/mnt/data2
   
-  wget -c http 下载断点续传
+  wget -c  --http-user=username --http-password=password URL 下载断点续传
   
   ubuntu拷贝文件省略操作：############################
     cp 34_*.jpg test/D00/00000000/02/
