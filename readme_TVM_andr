@@ -1,0 +1,19 @@
+https://tkat0.github.io/html/tvm/android-tutorial/tutorials/frontend/deploy_model_on_android.html#sphx-glr-tutorials-frontend-deploy-model-on-android-py
+
+--------->Register Android device to RPC Tracker
+readme page
+---->https://github.com/dmlc/tvm/tree/master/apps/android_rpc
+We use Gradle to build. Please follow the installation instruction for your operating system.
+-installation instruction--->https://gradle.org/install/
+Installing with a package manager
+SDKMAN! ---->https://sdkman.io/
+
+"curl -s "https://get.sdkman.io" | bash"(host pc, not docker)
+"sdk install gradle 5.4.1"(host pc, not docker)
+
+TVM4J Installation Guide and install tvm4j-core
+---->https://github.com/dmlc/tvm/blob/master/jvm/README.md
+install maven(host pc, not docker)
+---->
+"cd /tvm"(the path is important) (or err: no rule for target)
+"make jvmpkg"
