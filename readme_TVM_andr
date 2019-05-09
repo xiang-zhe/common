@@ -4,7 +4,8 @@ https://tkat0.github.io/html/tvm/android-tutorial/tutorials/frontend/deploy_mode
 readme page
 ---->https://github.com/dmlc/tvm/tree/master/apps/android_rpc
 We use Gradle to build. Please follow the installation instruction for your operating system.
--installation instruction--->https://gradle.org/install/
+-installation instruction
+--->https://gradle.org/install/
 Installing with a package manager
 SDKMAN! ---->https://sdkman.io/
 
@@ -17,3 +18,15 @@ install maven(host pc, not docker)
 ---->
 "cd /tvm"(the path is important) (or err: no rule for target)
 "make jvmpkg"
+"sh tests/scripts/task_java_unittest.sh"
+"make jvminstall"
+
+---->
+https://github.com/dmlc/tvm/tree/master/apps/android_rpc
+Modify tvm/apps/android_rpc/app/build.gradle if necessary
+"export ANDROID_HOME=/home/xiang/Android/sdk"
+"cd apps/android_rpc"
+"gradle clean build"
+In app/build/outputs/apk you'll find app-release-unsigned.apk, use dev_tools/gen_keystore.sh to generate a signature and 
+use dev_tools/sign_apk.sh to get the signed apk file app/build/outputs/apk/tvmrpc-release.apk.
+Upload tvmrpc-release.apk to your Android device and install it.
