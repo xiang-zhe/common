@@ -31,3 +31,7 @@ Modify tvm/apps/android_rpc/app/build.gradle if necessary
 In app/build/outputs/apk you'll find app-release-unsigned.apk, use dev_tools/gen_keystore.sh to generate a signature and 
 use dev_tools/sign_apk.sh to get the signed apk file app/build/outputs/apk/tvmrpc-release.apk.
 Upload tvmrpc-release.apk to your Android device and install it.
+
+"python -m tvm.exec.query_rpc_tracker --host=0.0.0.0 --port=9090"
+Q： OSError: libnvrtc.so.9.0: cannot open shared object file: No such file or directory
+  A:
