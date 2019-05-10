@@ -12,7 +12,7 @@ SDKMAN! ---->https://sdkman.io/
 "curl -s "https://get.sdkman.io" | bash"(host pc, not docker)
 "sdk install gradle 5.4.1"(host pc, not docker)
 
-apt-get install zip upzip
+"apt-get install zip upzip"
 TVM4J Installation Guide and install tvm4j-core
 ---->https://github.com/dmlc/tvm/blob/master/jvm/README.md
 install maven(host pc, not docker)
