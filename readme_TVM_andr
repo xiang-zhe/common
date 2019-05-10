@@ -38,4 +38,4 @@ Upload tvmrpc-release.apk to your Android device and install it.
 
 "python -m tvm.exec.query_rpc_tracker --host=0.0.0.0 --port=9090"
 Q： OSError: libnvrtc.so.9.0: cannot open shared object file: No such file or directory
-  A:
+  A: some problem from the host-build（build with cuda）， replace the docker-build，
