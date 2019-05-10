@@ -24,6 +24,10 @@ install maven(host pc, not docker)
 
 ---->
 https://github.com/dmlc/tvm/tree/master/apps/android_rpc
+cd apps/android_rpc/app/src/main/jni
+cp make/config.mk .
+modify config.mk
+./build.sh
 Modify tvm/apps/android_rpc/app/build.gradle if necessary
 "export ANDROID_HOME=/home/xiang/Android/sdk"
 "cd apps/android_rpc"
