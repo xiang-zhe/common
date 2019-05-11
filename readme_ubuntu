@@ -148,13 +148,6 @@ E: Sub-process /usr/bin/dpkg returned an error code (1)
   export PYTHONPATH=/home/zhao/setup/caffe-master/python:/home/zhao/setup/mypy:$PYTHONPATH
   source ~/.bashrc
 
-    sudo gedit /etc/modprobe.d/blacklist-nouveau.conf
-    写入
-    blacklist nouveau
-    options nouveau modeset=0
-    更新
-    sudo update-initramfs -u
-    重装nvidia驱动
 
 百度网盘下载：
   插件安装https://addons.mozilla.org/zh-CN/firefox/addon/baidu-pan-exporter/
