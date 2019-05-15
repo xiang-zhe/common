@@ -38,3 +38,12 @@ ubuntu装机：
     try ubuntu，下载boot-repair即可
   不能进tty：
     可能是之前的操作导致，（比如安装啦driver430，卸载即可）
+
+开机显示 low-graphic mode：
+  cd /etc/X11    
+  sudo cp xorg.conf.failsafe xorg.conf   
+    或
+  sudo chown lightdm:lightdm -R /var/lib/lightdm
+  sudo chown avahi-autoipd:avahi-autoipd -R /var/lib/avahi-autoipd
+  sudo chown colord:colord -R /var/lib/colord
+  sudo reboot 
