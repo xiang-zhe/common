@@ -1,0 +1,32 @@
+ubuntu安装
+
+win10下的wsl不支持显卡加速，而且是子系统驱动应该是和win10母系统共用，想docker
+
+一定要先查同款机器或者同品牌是否有教程，
+    https://blog.csdn.net/wxc971231/article/details/88033261
+    acpi问题：
+      在gurb界面处选择第一项，按e进入edit mode，找到quiet splash ---，把---换成nomodeset,这表示调用集显，之后按F10即可进入安装界面了
+    安装好系统后，grub处按e，找到quiet splash，在后面加上nonmodeset，进入系统后，查看电脑显卡，如果不是N卡，是inter或者llvm，那么安装nvidia驱动
+      先ubuntu-drivers devices查看支持的显卡，或者终端softw+tab查看，这个1070mq好像只支持384，不支持第三方驱动，最后reboot
+      
+输入法
+  http://baijiahao.baidu.com/s?id=1596793323914694920&wfr=spider&for=pc
+  Ubuntu Software搜索“pinyin”，安装； Language Support中设置为IBUS； Text Entry中左下角加号，选择“Chinese(intelligent pinyin)”
+  
+更新源：
+  sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+  sudo vim /etc/apt/source.list
+    替换：
+      # deb cdrom:[Ubuntu 16.04 LTS _Xenial Xerus_ - Release amd64 (20160420.1)]/ xenial main restricted
+      deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted
+      deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted
+      deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial universe
+      deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates universe
+      deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial multiverse
+      deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates multiverse
+      deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+      deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted
+      deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security universe
+      deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security multiverse
+  
+    
