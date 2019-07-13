@@ -10,7 +10,7 @@ NVIDIA
       sudo reboot      
   ubuntu-drivers devices   # 查询所有ubuntu推荐的驱动
   
-  sudo apt-get remove –purge nvidia*
+  sudo apt-get remove --purge nvidia*
   sudo add-apt-repository ppa:graphics-drivers/ppa
   sudo apt-get update
   sudo apt-get install nvidia-418
