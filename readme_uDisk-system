@@ -18,10 +18,16 @@
 
 ubuntu装机：
   extraiso写的系统没有boot区，efi替代
-  开机输入密码后无法进人，禁用系带显卡nouveau
-    进入grub，按e进入编辑模式，quiet splash后加nomodeset，启动后禁用 nouveau
-
-
+  开机输入密码后无法进人，禁用系统自带显卡驱动nouveau
+    进入grub，按e进入编辑模式，quiet splash后加nomodeset，禁用独立显卡启动，
+    启动后禁用nouveau
+    重装nvidia-driver
+    
+开机后查看，about this computer
+  graphics 显示inter或者llvm，表示显卡不是N卡，在终端输入softw+tab，到驱动中更新驱动，
+  或者ubuntu-drivers devices查看，安装合适的驱动
+  reboot
+  
 开机停留在登录界面：
     sudo gedit /etc/modprobe.d/blacklist-nouveau.conf
     写入
@@ -32,6 +38,7 @@ ubuntu装机：
     重装nvidia驱动
     
 开机循环进入登录界面：
+    可能是驱动的问题，卸载即可
   
 开机光标闪，黑屏：
   能进tty：可能是boot坏啦，boot-repair
@@ -47,3 +54,4 @@ ubuntu装机：
   sudo chown avahi-autoipd:avahi-autoipd -R /var/lib/avahi-autoipd
   sudo chown colord:colord -R /var/lib/colord
   sudo reboot 
+
