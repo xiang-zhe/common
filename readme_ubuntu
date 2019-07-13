@@ -1,4 +1,9 @@
-
+System Program Problem Detected
+      sudo rm -rf /var/crash
+  或者
+      sudo gedit /etc/default/apport  
+      将enabled=1改为enabled=0保存退出即可
+      
 linux 远程操作
   ssh ubuntu@192.168.3.81
   登录192.168.3.81电脑的ubuntu账户
