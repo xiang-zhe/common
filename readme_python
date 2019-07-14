@@ -49,5 +49,7 @@ array写入config：
 
 from pip import main ImportError: cannot import name 'main'
   A: pip文件在usr/bin目录下，cd进去，进行以下修改
-        sys.exit(main())
+        from pip import __main__
         sys.exit(__main__._main())
+    或者：
+        from pip._internal import main
