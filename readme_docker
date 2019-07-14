@@ -41,6 +41,12 @@ Q:
   3 git cannot found commend，
     A： apt-get update
         apt-get install
+
+sudo权限：
+  sudo groupadd docker
+  sudo gpasswd -a ${USER} docker
+  sudo service docker restart
+  newgrp - docker
                 
 config：
   修改镜像仓库：
