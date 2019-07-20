@@ -1,0 +1,92 @@
+git clone --recursive https://github.com/dmlc/tvm
+cd tvm
+docker build -t tvm.demo_android -f docker/Dockerfile.demo_android ./docker
+docker run --pid=host -h tvm -v $PWD:/workspace -w /workspace -p 9190:9190 --name tvm -it tvm.demo_android bash
+
+in container:
+    mkdir build
+    cd build
+    cmake -DUSE_LLVM=llvm-config-6.0 \
+          -DUSE_RPC=ON \
+          -DUSE_SORT=ON \
+          -DUSE_VULKAN=ON \
+          -DUSE_GRAPH_RUNTIME=ON \
+          ..
+    make -j10
+    
+    echo 'export PYTHONPATH=/workspace/python:/workspacem/topi/python:/workspace/nnvm/python/:/workspace/vta/python:${PYTHONPATH}' >> ~/.bashrc
+    source ~/.bashrc
+
+in a new container:
+    apt-get install adb 
+    adb pull /system/vendor/lib64/libOpenCL.so ./
+    mv libOpenCL.so /workspace
+    python -m tvm.exec.rpc_tracker --host=0.0.0.0 --port=9190
+
+in the older container:
+    apt-get install curl zip unzip vim adb -y
+    curl -s "https://get.sdkman.io
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    sdk install gradle 5.4.1
+    cd /tvm    (the path is important) (or err: no rule for target)
+    make jvmpkg
+    sh tests/scripts/task_java_unittest.sh
+    make jvminstall
+
+    cd apps/android_rpc/app/src/main/jni
+    cp make/config.mk .
+        ----modify config.mk(https://docs.tvm.ai/tutorials/frontend/deploy_model_on_android.html?highlight=android)(https://github.com/dmlc/tvm/tree/master/apps/android_rpc)
+            APP_ABI = arm64-v8a
+
+            APP_PLATFORM = android-24
+
+            # whether enable OpenCL during compile
+            USE_OPENCL = 1
+
+            # whether to enable Vulkan during compile
+            USE_VULKAN = 1
+
+            ifeq ($(USE_VULKAN), 1)
+              # Statically linking vulkan requires API Level 24 or higher
+              APP_PLATFORM = android-24
+            endif
+
+            # the additional include headers you want to add, e.g., SDK_PATH/adrenosdk/Development/Inc
+            # download adrenosdk-linux-5_0 from https://developer.qualcomm.com/software/adreno-gpu-sdk/tools
+            ADD_C_INCLUDES += /work/adrenosdk-linux-5_0/Development/Inc
+            # download from https://github.com/KhronosGroup/OpenCL-Headers
+            ADD_C_INCLUDES += /workspace/3rdparty/OpenCL-Headers/
+
+            # the additional link libs you want to add, e.g., ANDROID_LIB_PATH/libOpenCL.so
+            ADD_LDLIBS = /workspace/libOpenCL.so
+        
+    ./build.sh
+
+    export ANDROID_HOME=/opt/android-sdk-linux
+    cd /workspace/apps/android_rpc
+    gradle clean build
+
+    dev_tools/gen_keystore.sh
+    dev_tools/sign_apk.sh
+    ----app/build/outputs/apk/tvmrpc-release.apk
+    ----install apk to phone
+
+    /opt/android-sdk-linux/ndk-bundle/build/tools/make-standalone-toolchain.sh --platform=android-24 --use-llvm --arch=arm64 --install-dir=/opt/android-toolchain-arm64
+    export TVM_NDK_CC=/opt/android-toolchain-arm64/bin/aarch64-linux-android-g++
+
+    #cd /opt/android-ndk/build/tools/
+    #./make-standalone-toolchain.sh --platform=android-24 --use-llvm --arch=arm64 --install-dir=/opt/android-toolchain-arm64
+
+
+    python -m tvm.exec.query_rpc_tracker --host=0.0.0.0 --port=9190
+    export TVM_TRACKER_HOST=0.0.0.0
+    export TVM_TRACKER_PORT=9190
+    cd /workspace/apps/android_rpc
+    python tests/android_rpc_test.py
+
+docker adb 失效？
+
+test的时候：    
+StreamExecutor device (0): <undefined>, <undefined>
+
+
