@@ -24,6 +24,7 @@ NVIDIA
 
 
 cuda
+  installation： https://developer.nvidia.com/cuda-toolkit-archive
    Not enough space on parition mounted at /tmp.Need 5091561472 bytes.
    Disk space check has failed. Installation cannot continue.
    A:
@@ -40,6 +41,8 @@ cuda
    
    
 cudnn
+  download:   https://developer.nvidia.com/cudnn
+  installation:   https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html
   include/darknet.h:16:23: fatal error: cudnn.h: 没有那个文件或目录
   compilation terminated.
   Makefile:89: recipe for target 'obj/gemm.o' failed
