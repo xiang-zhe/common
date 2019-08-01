@@ -33,6 +33,12 @@ cd $DETECTRON/docker
 docker build -t detectron:c2-cuda9-cudnn7 .
 
 nvidia-docker run --rm -it detectron:c2-cuda9-cudnn7 python detectron/tests/test_batch_permutation_op.py
+
+docker:
+    rename /etc/apt/source.list.d /etc/apt/source.list.d.bak    
+    apt-get update
+    apt-get install vim
+    
 Q：
     1，Could not find a package configuration file provided by "gflags" with any of the following names:
     or The command '/bin/sh -c make ops' returned a non-zero code: 2
