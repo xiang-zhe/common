@@ -1,3 +1,16 @@
+########  再更新openpose安装
+0, git clone --recursive https://github.com/CMU-Perceptual-Computing-Lab/openpose
+1, 
+1.0， install cuda，cudnn
+1.1, bash ./scripts/ubuntu/install_deps.sh
+1.2, apt-get install libopencv-dev(opencv)
+2, 
+2.1, Ubuntu - Anaconda should not be installed on your system. Anaconda includes a Protobuf version that is incompatible with Caffe.
+2.2, apt-get install cmake-qt-gui(见官方文档)
+3, cd build/
+make -j`nproc`
+
+
 ########  更新openpose安装
 0, git clone --recursive https://github.com/CMU-Perceptual-Computing-Lab/openpose
 1, 
