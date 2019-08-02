@@ -1,0 +1,36 @@
+build in linux(arm)
+
+lrn_arm.cpp:29:22: fatal error: arm_neon.h: No such file or directory
+  
+
+Makefile:198: recipe for target 'hclarm' failed
+  
+  
+  
+build for android:
+1,CMake Error at CMakeLists.txt:16 (cmake_minimum_required):
+  CMake 3.6 or higher is required.  You are running version 3.5.1
+  A： 更新cmake
+  
+2,/home/apuser/deeplearning/tengine/serializer/include/te_caffe.pb.h:19:2: error:
+regenerate this file with a newer version of protoc.
+#error regenerate this file with a newer version of protoc.
+  A: https://github.com/OAID/Tengine/issues/48
+  使用protobuf3.0.0
+  
+3, ubuntu adb push secure_mkdirs failed: Read-only file system
+  因为没有root权限，所以要找到/data/local/tmp目录下, /sdcard/目录也不行因为无法chmod
+  
+
+YuFaceDetectNet要单独build，
+  cd examples/YuFaceDetect
+  mkdir build 
+  cd build
+  cp examples/android_build_armv8.sh examples/YuFaceDetect/
+  make -j4（就会生成YuFaceDetect）
+    官网的会报错：可能官网是直接在linux上运行的，
+          cmake -DTENGINE_DIR=/home/firefly/Tengine ..
+          make
+            /usr/bin/ld: skipping incompatible /home/xiang/git/Tengine/install/lib/libtengine.so when searching for -ltengine
+            /usr/bin/ld: cannot find -ltengine
+
