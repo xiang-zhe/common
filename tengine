@@ -33,4 +33,4 @@ YuFaceDetectNet要单独build，
           make
             /usr/bin/ld: skipping incompatible /home/xiang/git/Tengine/install/lib/libtengine.so when searching for -ltengine
             /usr/bin/ld: cannot find -ltengine
-
+运行前，先添加路径 export LD_LIBRARY_PATH=.
