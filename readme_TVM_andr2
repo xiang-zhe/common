@@ -80,6 +80,7 @@ in the older container:
 
 
     python -m tvm.exec.query_rpc_tracker --host=0.0.0.0 --port=9190
+    (重起容器，必须加入路径）
     export TVM_TRACKER_HOST=0.0.0.0
     export TVM_TRACKER_PORT=9190
     cd /workspace/apps/android_rpc
