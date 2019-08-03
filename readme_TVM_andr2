@@ -70,7 +70,8 @@ in the older container:
     dev_tools/sign_apk.sh
     ----app/build/outputs/apk/tvmrpc-release.apk
     ----install apk to phone
-
+    
+    (如果容器重建，好像要从这里开始运行）
     /opt/android-sdk-linux/ndk-bundle/build/tools/make-standalone-toolchain.sh --platform=android-24 --use-llvm --arch=arm64 --install-dir=/opt/android-toolchain-arm64
     export TVM_NDK_CC=/opt/android-toolchain-arm64/bin/aarch64-linux-android-g++
 
