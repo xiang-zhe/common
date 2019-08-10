@@ -1,0 +1,2 @@
+1， camera example 打不开？ --permission
+   p4a apk --requirements=kivy,python3 --private /home/xiang/apk/cam --package=org.cam --name="cam" --version=0.1 --permission CAMERA
