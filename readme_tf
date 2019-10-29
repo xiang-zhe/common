@@ -1,0 +1,8 @@
+
+
+grads 返回 None， 
+  1可能梯度和变量无关
+  2？？
+      unconnected_gradients='zero'
+      
+grads 返回 Nan，应该是梯度太大导致
