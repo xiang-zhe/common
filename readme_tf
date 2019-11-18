@@ -11,3 +11,7 @@ grads 返回 Nan，应该是梯度太大导致
 AttributeError: 'Tensor' object has no attribute 'numpy'
   tf.enable_eager_execution()也无法解决， model.build有时报错，但是传入一张图片不报错
   
+
+tf.keras:
+  model.load_weights(): 导入模型时，先读取权重的第一曾name，然后遍历第一曾name，去取对应网络结构，取到网络结构才会取对应的weights；
+  也就是网络结构如使用model.layers[0]这样去导入权重时会找不到name，直接返回[],相当于没有导入
