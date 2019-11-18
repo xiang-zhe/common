@@ -6,7 +6,7 @@ grads 返回 None，
       unconnected_gradients='zero'
       
 grads 返回 Nan，应该是梯度太大导致
-
+  可以通过剪切控制梯度，参考https://github.com/rbgirshick/py-faster-rcnn/issues/65#issuecomment-366613724
 
 AttributeError: 'Tensor' object has no attribute 'numpy'
   tf.enable_eager_execution()也无法解决， model.build有时报错，但是传入一张图片不报错
