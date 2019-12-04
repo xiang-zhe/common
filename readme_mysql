@@ -67,3 +67,11 @@ mysql
 使用format插入中文有问题：
 cur1.execute("INSERT INTO t_user (user_name,user_class,user_school,create_time) VALUES ({},{},{},now());".format(childname_, classname, schoolname)
 cur1.execute("INSERT INTO t_user (user_name,user_class,user_school,create_time) VALUES ('"+ childname_+"' , '"+ classname+"', '"+ schoolname+"',now());")
+
+
+安装问题:
+  重装
+  https://www.jianshu.com/p/c76b31df5d09
+  
+  ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+  
