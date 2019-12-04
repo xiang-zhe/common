@@ -70,8 +70,12 @@ cur1.execute("INSERT INTO t_user (user_name,user_class,user_school,create_time) 
 
 
 安装问题:
-  重装
-  https://www.jianshu.com/p/c76b31df5d09
+  重装  https://www.jianshu.com/p/c76b31df5d09
+  sudo apt-get remove mysql-* ##删除
+  dpkg -l |grep ^rc|awk '{print $2}' |sudo xargs dpkg -P ##清理数据
+  sudo apt-get install mysql-client mysql-server
+  sudo service mysql start
+   
   
   ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
   
