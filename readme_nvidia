@@ -24,6 +24,7 @@ NVIDIA
 
 
 cuda
+  查看cuda版本:cat /usr/local/cuda/version.txt
   installation： https://developer.nvidia.com/cuda-toolkit-archive
    Not enough space on parition mounted at /tmp.Need 5091561472 bytes.
    Disk space check has failed. Installation cannot continue.
@@ -41,6 +42,7 @@ cuda
    
    
 cudnn
+  查看cudnn版本:cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
   download:   https://developer.nvidia.com/cudnn
   installation:   https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html
   include/darknet.h:16:23: fatal error: cudnn.h: 没有那个文件或目录
