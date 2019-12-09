@@ -7,6 +7,11 @@ pymysql：
   fetchone()：返回的数据格式是元组形式的(可以用cursorclass = pymysql.cursors.DictCursor改成字典的形式){'id': 2, 'sex': 'male', 'name': 'xiaoli'}
 
 mysql
+  创建数据库:
+    1.尽量使用NOT NULL
+    2.使用TIMESTAMP比DATETIME更快
+    3.使用枚举或整数代替字符串类型
+    4.
   复制库结构： 复制数据库，使用mysqldump及mysql的命令组合，一次性完成复制，命令行
     先创建：
       mysql>CREATE DATABASE `newdb` DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
