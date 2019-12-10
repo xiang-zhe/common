@@ -2,8 +2,11 @@ cmake:
   源码：
   二进制文件：
     下载cmake-3.15.1-Linux-x86_64.sh
+    sudo chmod +x cmake-3.15.1-Linux-x86_64.sh
     sudo /home/Downloads/cmake-3.15.1-Linux-x86_64.sh（一定要加路径）
     ln -sf /opt/cmake-3.12.2/bin/*  /usr/bin/
+  pip安装:
+    pip install cmake
     
 protobuf：
   源码：
