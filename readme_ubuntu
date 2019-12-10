@@ -128,6 +128,10 @@ Get:23 http://us-east-1.ec2.archive.ubuntu.com/ubuntu xenial/multiverse amd64 Pa
 E:Error mounting /dev/sdc1 at /media/root/LinJG-U盘: Command-line `mount -t "exfat" ...
 A:apt-get install exfat-fuse
 
+locate:
+  是通过db来定位,如果没有更新到db,则要手动sudo updatedb,-r加正则
+find:
+  find path -name 
 
 更改目录用户组：
   sudo chown -R xiang 目录名/
