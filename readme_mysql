@@ -7,6 +7,7 @@ pymysql：
   fetchone()：返回的数据格式是元组形式的(可以用cursorclass = pymysql.cursors.DictCursor改成字典的形式){'id': 2, 'sex': 'male', 'name': 'xiaoli'}
 
 mysql
+  length('中国')=6, char_length=3, length('zhongguo')=char_length('zhongguo')=8; varchar(n)中n是指char_length的长度
   创建数据库:
     1.尽量使用NOT NULL
     2.使用TIMESTAMP比DATETIME更快
@@ -70,8 +71,9 @@ mysql
 
 
 使用format插入中文有问题：
-cur1.execute("INSERT INTO t_user (user_name,user_class,user_school,create_time) VALUES ({},{},{},now());".format(childname_, classname, schoolname)
-cur1.execute("INSERT INTO t_user (user_name,user_class,user_school,create_time) VALUES ('"+ childname_+"' , '"+ classname+"', '"+ schoolname+"',now());")
+  cur1.execute("INSERT INTO t_user (user_name,user_class,user_school,create_time) VALUES ({},{},{},now());".format(childname_, classname, schoolname)
+  此处在字符{}时要使用引号'{}'
+  cur1.execute("INSERT INTO t_user (user_name,user_class,user_school,create_time) VALUES ('"+ childname_+"' , '"+ classname+"', '"+ schoolname+"',now());")
 
 
 安装问题:
