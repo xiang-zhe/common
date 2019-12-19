@@ -8,6 +8,7 @@ pymysql：
 
 mysql
   length('中国')=6, char_length=3, length('zhongguo')=char_length('zhongguo')=8; varchar(n)中n是指char_length的长度
+  varchar('255')和varchar('2')存'中国'时占用空间虽然一样,但是读取时占内存却不一样
   创建数据库:
     1.尽量使用NOT NULL
     2.使用TIMESTAMP比DATETIME更快
