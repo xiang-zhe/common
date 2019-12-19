@@ -41,7 +41,10 @@ linux 远程操作
       sudo apt-get update 
       sudo apt-get install x2goclient
     登录使用XFCE，kde不行
-    moba
+    
+    mobaXterm:
+    ssh登录时,指定用户名,选择xfce desktop,即可登录老鼠界面的远程桌面
+    怎么登录同一桌面?
   
   nohup：
     远程操作加nohup时，直接远程机器运行
