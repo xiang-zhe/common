@@ -1,3 +1,6 @@
+vim ~/.vimrc  ##
+  最后一行添加set number添加行号
+
 删除未保存副本：
   rm .tmp.swp
   
