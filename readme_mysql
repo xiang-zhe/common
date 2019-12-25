@@ -85,6 +85,11 @@ mysql
   sudo apt-get install mysql-client mysql-server
   sudo service mysql start
    
-  
   ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
   
+开启远程访问:
+  mysql -u root -p
+  use mysql;
+  SELECT `Host`,`User` FROM user;
+  UPDATE user SET `Host` = '%' WHERE `User` = 'root' LIMIT 1;
+  flush privileges;
