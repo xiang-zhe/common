@@ -88,8 +88,11 @@ mysql
   ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
   
 开启远程访问:
+  grep -rn "127.0.0.1" /etc/mysql/
+  注释其中的bind-address = 127.0.0.1 
   mysql -u root -p
   use mysql;
   SELECT `Host`,`User` FROM user;
   UPDATE user SET `Host` = '%' WHERE `User` = 'root' LIMIT 1;
   flush privileges;
+  sudo service mysql restart
