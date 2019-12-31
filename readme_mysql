@@ -10,6 +10,39 @@ mysql
   length('中国')=6, char_length=3, length('zhongguo')=char_length('zhongguo')=8; varchar(n)中n是指char_length的长度
   varchar(255)和varchar(2)存'中国'时占用空间虽然一样,但是读取时占内存却不一样
   int(4)中的4只表示显示长度,与储存无关,如超过四位数,也会显示,只是在左侧补全四位
+  动态表名和数字表名
+      delimiter // 
+      DROP PROCEDURE IF EXISTS create_table; 
+      CREATE PROCEDURE create_table()
+      BEGIN
+        DECLARE s int DEFAULT 0;
+        DECLARE ID_name int;
+        DECLARE report CURSOR FOR select `ID` from Intersection_Information;
+        DECLARE CONTINUE HANDLER FOR NOT FOUND SET s=1;
+        open report;
+          fetch report into ID_name;
+          while s<>1 do
+            set @sql_create_table = concat(
+            "create TABLE IF NOT EXISTS `", ID_name, "` (
+              `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+              `Video_Information_ID` INT UNSIGNED NOT NULL COMMENT '外键,受约束于Video_Information的主键',
+              `Track_ID` MEDIUMINT UNSIGNED NOT NULL COMMENT '车辆跟踪的ID',
+              `Frame` SMALLINT NOT NULL COMMENT '帧数,以0,5,10,15,20记录',
+              `X` SMALLINT NOT NULL COMMENT '车辆像素x坐标',
+              `Y` SMALLINT NOT NULL COMMENT '车辆像素y坐标',
+              `W` SMALLINT NOT NULL COMMENT '车辆检测框的宽度',
+              `H` SMALLINT NOT NULL COMMENT '车辆检测框的高度',
+              PRIMARY KEY ( `ID` )
+            )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='表注释'");
+            PREPARE sql_create_table FROM @sql_create_table;   
+            EXECUTE sql_create_table; 
+            fetch report into ID_name;
+          end while;
+        close report;
+      END;
+      //
+      delimiter ;  # 重新定义;为一句sql的结束标志，取消//的所代表的意义
+      call create_table();
   创建数据库:
     1.尽量使用NOT NULL
     2.使用TIMESTAMP比DATETIME更快
