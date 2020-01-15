@@ -22,7 +22,9 @@ System Program Problem Detected
       将enabled=1改为enabled=0保存退出即可
 
 更改默认python版本后,ctrl+alt+T无法调终端, 无法找到apk_get等问题:
-  终端:修改/usr/lib/python3/dist-packages/gi/下面的_cpython-35m-x86_64-linux-gnu 为_cpython-36m-x86_64-linux-gnu即可
+  修改/usr/lib/python3/dist-packages/gi/下面的_cpython-35m-x86_64-linux-gnu 为_cpython-36m-x86_64-linux-gnu即可
+无法找到ModuleNotFoundError: No module named 'apt_pkg'
+   修改/usr/lib/python3/dist-packages/中apt_pkg.cpython-3?m-x86_64-linux-gnu.so apt_pkg.cpython-36m-x86_64-linux-gnu.so 
 
 linux 远程操作
   ssh ubuntu@192.168.3.81
