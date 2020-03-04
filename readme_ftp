@@ -2,6 +2,6 @@ lftp:
   cd & lcd; pwd & lpwd
   get file /mget *files
   put file /mput *files
-  mirror –vn RCD LCD
-  mirror –R LCD RCD
+  mirror –vn RD LD
+  mirror –R LD RD
   
