@@ -1,0 +1,12 @@
+查阅：
+ffmpeg -i {video}
+
+截图：
+bin/ffmpeg -ss 00:00:06 -i {} -f image2 -vframes 1 -y {}.jpg
+
+截取视频：
+bin/ffmpeg -i '{}' -ss 00:01:00 -to 00:01:05 -c copy {}
+
+转码：
+bin/ffmpeg  -hwaccel cuvid -hwaccel_device 0 -c:v h264_cuvid -i {} -ss 00:00:00 -t 01:00:00 -c:v h264_nvenc -y {}.mp4
+
