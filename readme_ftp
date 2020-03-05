@@ -1,7 +1,11 @@
 lftp:
-  cd & lcd; pwd & lpwd
+  
+  cd & lcd; pwd & lpwd；ls & !ls
   get file /mget *files
+  下载单个文件和一组文件，断点续传用-c参数,如：get -c 0.txt
   put file /mput *files
+  pget使用多个线程来下载远端文件, 预设为五个。
   mirror –vn RD LD
   mirror –R LD RD
+  镜像(反镜像即上传)一个目录，可以用多个线程并行镜像一个目录(--parallel=N)，如：mirror --parallel=3 incoming local_name
   
