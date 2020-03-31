@@ -9,6 +9,8 @@ bin/ffmpeg -i '{}' -ss 00:01:00 -to 00:01:05 -c copy {}
 
 转码：
 bin/ffmpeg  -hwaccel cuvid -hwaccel_device 0 -c:v h264_cuvid -i {} -ss 00:00:00 -t 01:00:00 -c:v h264_nvenc -y {}.mp4
+ffmpeg -i {}.avi -c copy -map 0 -y {}.mp4（未压缩）
+ffmpeg -i {}.avi -c:v libx264 -crf 19 -preset slow -c:a aac -b:a 192k -ac 2 -y  {}.mp4
 
 图片转视频：-r = fps
 ffmpeg -r 10 -i images/%d.png -b:v 1500k -vcodec wmv2 sumo.wmv
