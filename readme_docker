@@ -119,3 +119,8 @@ option :
 
   附加到一个运行的容器上面; --no-stdin=false Do not attach stdin; --sig-proxy=true Proxify all received signal to the process  
   $docker attach ID  
+
+
+
+Q:
+sudo docker run --gpus all -e NVIDIA_DRIVER_CAPABILITIES=video,compute,utility --name test2 -v /home/SENSETIME/lixiang_vendor/docker/:/data -it 7c4 /bin/bash
