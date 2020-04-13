@@ -1,2 +1,10 @@
-sinfo
-squeue -u lixiang_vendor
+    sinfo 查询可用ip和device
+    squeue 命令查看任务状态
+    squeue -l: 以长列表显示更多信息
+    squeue -u username: 仅显示属于用户 username 的任务。squeue -u lixiang_vendor
+    squeue -t state: 仅显示处于 state 状态的任务。
+    squeue -p VI_UC_1080TI占用用户
+    scancel jobid: 删除 jobid 的作业。
+    scancel -u username: 删除 username 的全部作业。scancel -u lixiang_vendor
+    scancel -s state: 删除处于 state 状态的作业。
+    swatch -n SH-IDC1-10-5-30-163 nv
