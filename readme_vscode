@@ -1,0 +1,51 @@
+1使用remote-ssh连接
+1.0 安装ssh >= 8.0
+下载OpenSSH-Win64.zip，(https://github.com/PowerShell/Win32-OpenSSH/releases/tag/v8.1.0.0p1-Beta)，解压；
+将其路径加入环境变量并删除原来老版本的环境变量（win10的自带版本较低，会报错）打开powershell，输入：ssh -V，查看版本是不是8.1；
+在powershell输入：ssh-keygen -t rsa -b 4096；
+在文件夹目录输入：%USERPROFILE%\.ssh\；将id_rsa.pub公钥添加到远程端的~/.ssh/authorized_keys中
+1.1 安装vscode，配好环境
+1.2 安装扩展remote-ssh
+1.3 按F1 输入：Remote-ssh：Connect-to-Host...
+1.4 点击弹出的configure SSH Hosts...，打开C:/users/xiang/.shh/config配置， ProxyCommand的ssh.exe要填新下载的
+    Host jump 
+        HostName jump01.sh.sensetime.com
+        ForwardAgent yes 
+        User lixiang_vendor 
+    Host x231
+        HostName 10.5.30.231
+        ForwardAgent yes
+        User lixiang_vendor
+        ProxyCommand D:\OpenSSH-Win64\ssh.exe -W %h:%p jump
+好像不要填写port，之前一致报错，找不到管道，但是删除port后就正常了；后面又尝试了都加上port 22也可以（不知道之前的问题到底是什么原因了）
+1.5 然后就可以点击remote explorer中的ssh targets 中的x231连接了，输入谷歌验证码和密码，连上后会显示绿色小勾，就可以直接打开远程目录了
+可以设置vscode中setting中的Remote.SSH: Show Login Terminal，在终端输入验证码和密码
+
+2使用sftp连接，这种连接没有remote-ssh好，是通过ftp文件传输方式进行更新
+2.1 在vscode中安装扩展sftp，
+2.2 按F1，输入：sftp:config，右下角会弹出SFTP expects to work at a folder.让你选一个文件夹作sftp的本地目录，设置配置
+    {
+        "name":"lixiang_vendor",
+        "host": "10.5.30.231",
+        "port": 21,
+        "username": "lixiang_vendor",
+        "password": "*********",
+        "protocol": "ftp",
+        "passive": false,
+        "interactiveAuth": true,
+        "remotePath": "/lustre/lixiang_vendor/",
+        "uploadOnSave": true,
+        "syncMode": "update",
+        "ignore": [
+            "**/.vscode/**",
+            "**/.git/**",
+            "**/.DS_Store"
+        ],
+        "watcher": {
+            "files": "glob",
+            "autoUpload": true,
+            "autoDelete": true
+        }
+    } 
+注意"remotePath":这里目录是"/lustre/lixiang_vendor/"，而不是"/mnt/lustre/lixiang_vendor/"，不知道为什么。如果不知道远程目录，可以通过ftp连接远程pwd查看自己的目录地址
+2.3 然后就可以在本地目录写文件，保存后（"autoUpload": true,）会自动上传到远程目录，但是有延时。
