@@ -55,3 +55,10 @@ from pip import main ImportError: cannot import name 'main'
         sys.exit(__main__._main())
     或者：
         from pip._internal import main
+
+python调用系统命令：
+  os.system()不等待系统命令执行完，直接运行后面的代码
+  如需等待使用popen
+  prog = subprocess.Popen([], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  out, err = prog.communicate() #据说加上这个不会阻塞
+  prog.wait()
