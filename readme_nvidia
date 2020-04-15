@@ -1,4 +1,6 @@
 NVIDIA
+  nvidia-smi用法：
+    str(subprocess.check_output(["nvidia-smi", "-L"])).count('UUID')
   lspci | grep VGA     # 查看集成显卡
   lspci | grep NVIDIA  # 查看NVIDIA显卡
   lshw -numeric -C display  #显示显卡型号
