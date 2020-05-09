@@ -1,0 +1,50 @@
+##python调用系统命令：
+  os.system()不等待系统命令执行完，直接运行后面的代码
+  如需等待使用popen
+  prog = subprocess.Popen([], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  out, err = prog.communicate() #据说加上这个不会阻塞
+  prog.wait()
+  
+  
+## python编码问题：
+  https://python3-cookbook.readthedocs.io/zh_CN/latest/c05/p15_printing_bad_filenames.html
+  def bad_filename(filename):
+    temp = filename.encode(sys.getfilesystemencoding(), errors='surrogateescape')
+    return temp.decode('latin-1')
+  try:
+      print(name)
+  except UnicodeEncodeError:
+      print(bad_filename(name))
+
+## 查找gpu
+def assert_gpu()
+  gpu_num = pynvml.nvmlDeviceGetCount()
+  gpu_ind = 0
+  os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_ind%gpu_num)
+  gpu_ind += 1
+
+## 替换文本
+def gen_new_net_file(new_file,time_list,sample_file='test2.net.xml'):
+    with open(sample_file) as f:
+        contexts = f.readlines()
+    for i,c in enumerate(contexts):
+        if '<tlLogic' in c:
+            start_index = i
+        elif '</tlLogic>' in c:
+            end_index = i
+            break
+    assert end_index-start_index-1 == len(time_list)*2
+    new_c = contexts
+    for i,tim in zip(range(start_index+1,end_index,2),time_list):
+        l = new_c[i].split('"')
+        for j in l:
+            try:
+                int(j)
+                str_time = j
+                break
+            except:
+                continue
+        new_c[i] = new_c[i].replace(str_time, str(tim))
+        #print(new_c[i])
+    with open(new_file, "w") as f:
+        f.writelines(new_c)
