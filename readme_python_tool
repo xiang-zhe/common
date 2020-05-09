@@ -1,3 +1,12 @@
+## 并行执行
+  ls = [1, 2, 3, 4, 5]
+  def process(i):
+      done i
+  pool = ThreadPool()
+  pool.map(process, ls)
+  pool.close()
+  pool.join()
+
 ##python调用系统命令：
   os.system()不等待系统命令执行完，直接运行后面的代码
   如需等待使用popen
