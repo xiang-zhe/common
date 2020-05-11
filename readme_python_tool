@@ -14,6 +14,9 @@ def run():
   prog = subprocess.Popen([], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   out, err = prog.communicate() #据说加上这个不会阻塞
   prog.wait()
+  #wait()好像不管用
+  while prog.poll() == 0:
+    time.sleep(2)
   
   
 ## python编码问题：
