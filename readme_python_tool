@@ -1,5 +1,7 @@
 ## 并行执行
-#线程和进程参见，Pool（）和Thread Pool（）的区别http://www.cocoachina.com/articles/65367
+#线程和进程参见，Pool（）和Thread Pool（）的区别http://www.cocoachina.com/articles/65367 pool（）好像不能用
+from multiprocessing import Pool as ProcessPool #进程
+from multiprocessing.dummy import Pool as ThreadPool #线程
 def process(i):
     done i
 def run():
