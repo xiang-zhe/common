@@ -4,9 +4,10 @@
 from multiprocessing import Pool as ProcessPool #进程
 from multiprocessing.dummy import Pool as ThreadPool #线程
 def process(i):
-    done i
+    print(i[0]*i[1])
+    print(os.getppid(),os.getpid())
 def run():
-    ls = [1, 2, 3, 4, 5]
+    ls = [(1, 2), (3, 4), (5,6)]
     pool = ThreadPool()
     pool.map(process, ls)
     pool.close()
