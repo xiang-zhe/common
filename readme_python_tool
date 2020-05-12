@@ -1,4 +1,5 @@
 ## 并行执行
+#线程和进程参见，Pool（）和Thread Pool（）的区别http://www.cocoachina.com/articles/65367
 def process(i):
     done i
 def run():
