@@ -12,6 +12,8 @@ def run():
     pool.map(process, ls)
     pool.close()
     pool.join()
+if __name__ == '__main__': #官网硕临为什么if __name__ == '__main__': 是必须的
+    run()
 
 ##python调用系统命令：
   os.system()不等待系统命令执行完，直接运行后面的代码
