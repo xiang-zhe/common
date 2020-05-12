@@ -1,4 +1,5 @@
-一句话写入txt
+一句话写入excel，txt
+pd.DataFrame(j1).to_excel(f1+'.jam.xls')
 open('/home/LX/split_tp.txt', 'w').writelines(str(split_tp)) 如写入np.narray字符串中间有省略号，使用tuple即可;
 np.set_printoptions(threshold=np.nan)
 
