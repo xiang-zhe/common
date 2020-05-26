@@ -87,6 +87,9 @@ run :
 image commit :
   保存对容器的修改; -a, --author="" Author; -m, --message="" Commit message  
   $docker commit ID new_image_name  
+image save-load
+  docker save ubuntu:load>/root/ubuntu.tar
+  docker load<ubuntu.tar
   
   
 option :
