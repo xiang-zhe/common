@@ -1,3 +1,4 @@
+参考：https://www.jianshu.com/p/4f399b9dfb43
 查阅：
 ffmpeg -i {video}
 
@@ -8,6 +9,7 @@ bin/ffmpeg -ss 00:00:06 -i {} -f image2 -vframes 1 -y {}.jpg
 bin/ffmpeg -i '{}' -ss 00:01:00 -to 00:01:05 -c copy {}
 
 转码：
+ffmpeg -i out.ogv -vcodec h264 out.mp4  -vcodec 后面是编码格式，h264 最佳，但Windows不安装。如是 ppt 的视频，选择 wmv1 或 wmv2
 bin/ffmpeg  -hwaccel cuvid -hwaccel_device 0 -c:v h264_cuvid -i {} -ss 00:00:00 -t 01:00:00 -c:v h264_nvenc -y {}.mp4
 ffmpeg -i {}.avi -c copy -map 0 -y {}.mp4（未压缩）
 ffmpeg -i {}.avi -c:v libx264 -crf 19 -preset slow -c:a aac -b:a 192k -ac 2 -y  {}.mp4
@@ -15,3 +17,7 @@ ffmpeg -i {}.avi -c:v libx264 -crf 19 -preset slow -c:a aac -b:a 192k -ac 2 -y  
 图片转视频：-r = fps
 ffmpeg -r 10 -i images/%d.png -b:v 1500k -vcodec wmv2 sumo.wmv
 
+加速4倍
+ffmpeg -i TheOrigin.mp4 -vf  "setpts=0.25*PTS" UpTheOrigin.mp4
+减速4倍
+ffmpeg -i TheOrigin.mp4 -vf  "setpts=4*PTS" UpTheOrigin.mp4
