@@ -86,7 +86,7 @@ run :
   
 image commit :
   修改环境
-    docker commit --change=“ENV LANG C.UTF-8” 8a5d21dg36de 
+    docker commit --change=“ENV LANG C.UTF-8” 8a5d21dg36de new_image_name
   保存对容器的修改; -a, --author="" Author; -m, --message="" Commit message  
     docker commit imageID new_image_name  
 image save-load
