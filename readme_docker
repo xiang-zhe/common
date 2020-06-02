@@ -85,8 +85,10 @@ run :
   $docker run image_name apt-get install -y app_name 
   
 image commit :
+  修改环境
+    docker commit --change=“ENV LANG C.UTF-8” 8a5d21dg36de 
   保存对容器的修改; -a, --author="" Author; -m, --message="" Commit message  
-  $docker commit imageID new_image_name  
+    docker commit imageID new_image_name  
 image save-load
   docker save new_image_name>/root/new_image_name.tar
   docker load<new_image_name.tar
