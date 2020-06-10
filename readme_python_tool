@@ -16,7 +16,7 @@ if __name__ == '__main__': #官网硕临为什么if __name__ == '__main__': 是�
     run()
 
 ##python调用系统命令：
-  os.system()不等待系统命令执行完，直接运行后面的代码
+  os.system() w = os.system() ##什么时候阻塞？？
   如需等待使用popen
   prog = subprocess.Popen([], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   out, err = prog.communicate() #据说加上这个不会阻塞
