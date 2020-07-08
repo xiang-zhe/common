@@ -1,0 +1,280 @@
+import pandas as pd
+import numpy as np
+import pyecharts.options as opts
+from pyecharts.charts import Line,Pie,Bar
+from pyecharts.components import Table
+#from pyecharts.render import make_snapshot
+#from snapshot_selenium import snapshot
+import pickle
+from pyecharts.options import ComponentTitleOpts
+## 统计过车辆大的点位
+path = 'D:\\st\\gitlab\\network_state_estimation\\Congestion_count_example\\Congestion_count_example\\拥堵车辆计数\\'
+columns = ['一级服务水平', '二级服务水平','三级服务水平','四级服务水平','拥堵']
+month = [str(i) for i in range(20200506,20200514)]
+ymd = "20200506"
+def get_data(ymd):
+    filename = path + 'combine' + ymd + ".pk"
+    with open(filename, 'rb') as f:
+        camera = pickle.load(f)
+    return camera,ymd
+def get_data_during(st,durings=5):
+    cs = []
+    if type(st) == str:
+        for t in range(durings):
+            ymd = str(int(st) + t)
+            #print(ymd)
+            cs.append(get_data(ymd))
+    else:
+        for ymd in st:
+            cs.append(get_data(ymd))
+    return cs
+def get_d_count_all(month):
+    d_count = {}
+    for d in month:
+        filename = d
+        camera,_ = get_data(filename)
+        camera_ids = camera.keys()
+        d_count [d] = [[0, len(camera_ids)]]
+        for t in [2.1, 5.4, 7.5, 13.5]:
+            threshold = t
+            cam_list = []
+            for i in camera_ids:
+                c = camera[i][0]
+                roi_1 = c.data['车道1车辆数']
+                roi_1_len = len(roi_1[roi_1>=threshold])
+                roi_2 = c.data['车道2车辆数']
+                roi_2_len = len(roi_2[roi_2>=threshold])
+                if roi_1_len == 0 and roi_2_len == 0:
+                    continue
+                else:
+                    cam_list.append(i)
+            d_count[d].append([t, len(cam_list), cam_list])
+    d_count_all = {}  
+    for d in month:
+        all_length = d_count[d][0][1]
+        # 大于2.1数量
+        count1 = d_count[d][1][1]
+        # 大于5.4数量
+        count2 = d_count[d][2][1]
+        # 大于7.5数量        
+        count3 = d_count[d][3][1]
+        # 大于13.5数量        
+        count4 = d_count[d][4][1]
+        d_count_all[d] = [all_length- count1, count1-count2, count2-count3, count3-count4, count4]
+    return d_count_all
+d_count_all = get_d_count_all(month)
+
+def get_col_max_id(data,threshold):
+    max_value = -10000
+    max_id = None
+    col = None
+    for camera,ymd in data:
+        camera_id = camera.keys()
+        for i in camera_id:
+            c = camera[i][0]
+            roi_1 = c.data['车道1车辆数']
+            roi_1_len = len(roi_1[roi_1 >= threshold])
+            roi_2 = c.data['车道2车辆数']
+            roi_2_len = len(roi_2[roi_2 >= threshold])
+            if roi_1_len > roi_2_len:
+                col_sub = '车道1车辆数'
+                max_r = roi_1_len
+            else:
+                col_sub = '车道2车辆数'
+                max_r = roi_2_len                
+            if max_r > max_value:
+                max_value = max_r
+                max_id = i
+                col = col_sub
+    return col,max_id
+def plot_pie(ymd,d_count_all):
+    data = [round(i*100/sum(d_count_all[ymd]),2) for i in d_count_all[ymd]]
+    c = (
+        Pie()
+        .add(ymd, [list(z) for z in zip(columns, data)])
+        .set_global_opts(title_opts=opts.TitleOpts(title="服务水平"))
+        .set_series_opts(label_opts=opts.LabelOpts(formatter="{b}: {c}%"))
+    )
+    c.render("Fig.1 pie_base.html")
+    #c.render_notebook()
+    #make_snapshot(snapshot, c.render(), "pie.png")
+plot_pie(ymd,d_count_all)
+
+def plot_line(col,level,data):
+    v = ["≥109 km/h","≥90 km/h","≥78 km/h","≥48 km/h","≤ 48 km/h "]
+    c = (
+        Line()
+        .add_xaxis(list(data["抓拍时间"]))
+        .add_yaxis("速度{}".format(v[level-1]), list(data[col]), areastyle_opts=opts.AreaStyleOpts(opacity=0.5),is_smooth=True)
+        .set_series_opts(
+            areastyle_opts=opts.AreaStyleOpts(opacity=0.5),
+            label_opts=opts.LabelOpts(is_show=False),
+        )
+        .set_global_opts(
+            title_opts=opts.TitleOpts(title="Level {}".format(level)),
+            xaxis_opts=opts.AxisOpts(
+                axistick_opts=opts.AxisTickOpts(is_align_with_label=True),
+                is_scale=False,
+                boundary_gap=False,
+            ),
+        )
+    )
+    c.render("Fig.2-{} {} Level {}.html".format(level,str(data["抓拍时间"][0])[:10],level))
+    #c.render_notebook()
+    #make_snapshot(snapshot, c.render(), "{} Level {}.png".format(str(camera[max_id][0].data.抓拍时间[0])[:10],level))
+def plot_line_day_levels(ymd):
+    camera,ymd = get_data(ymd)
+    camera_id = camera.keys()
+    t = [0, 2.1, 5.4, 7.5, 13.5,100000000000]
+    for level,threshold in enumerate(t):
+        if level == 0:
+            continue
+        max_value = -10000
+        max_id = None
+        col = None
+        for i in camera_id:
+            c = camera[i][0]
+            roi_1 = c.data['车道1车辆数']
+            roi_1_len = len(roi_1[roi_1 > t[level-1]][roi_1 <= threshold])
+            roi_2 = c.data['车道2车辆数']
+            roi_2_len = len(roi_2[roi_2 > t[level-1]][roi_2 <= threshold])
+            if roi_1_len > roi_2_len:
+                col_sub = '车道1车辆数'
+                max_r = roi_1_len
+            else:
+                col_sub = '车道2车辆数'
+                max_r = roi_2_len 
+            if max_r > max_value:
+                max_value = max_r
+                max_id = i
+                col = col_sub      
+        print(max_id,col,t[level-1],threshold)
+        plot_line(col,level,camera[max_id][0].data)
+plot_line_day_levels(ymd)
+
+def plot_bar_durings(st,durings):
+    c = (
+        Bar()
+        .add_xaxis(sorted(d_count_all.keys()))
+        .set_global_opts(title_opts=opts.TitleOpts(title="Bar", subtitle=""))
+    )
+    time_list = [str(int(st)+i) for i in range(durings)]
+    for e,level in enumerate(columns):
+        c.add_yaxis(level, [d_count_all[i][e] for i in time_list])
+    c.render("Fig.3 bar_base.html")
+plot_bar_durings(ymd,7)
+
+def plot_line_durings(datas,camera_id,col,fig=4):
+    if fig == 4:
+        t = "一周趋势"
+    else:
+        t = "拥堵总览"
+    c = (
+        Line()
+        .add_xaxis(list(str(i)[10:] for i in datas[0][0][camera_id][0].data["抓拍时间"]))
+        .set_series_opts(
+            areastyle_opts=opts.AreaStyleOpts(opacity=0.5),
+            label_opts=opts.LabelOpts(is_show=False),
+        )
+        .set_global_opts(
+            title_opts=opts.TitleOpts(title=t, subtitle=""),
+            xaxis_opts=opts.AxisOpts(
+                axistick_opts=opts.AxisTickOpts(is_align_with_label=True),
+                is_scale=False,
+                boundary_gap=False,
+            ),
+            
+        )
+    )
+    for camera,ymd in datas:
+        c = c.add_yaxis(ymd, list(camera[camera_id][0].data[col]),is_smooth=True,label_opts = opts.LabelOpts(is_show=False))
+    c.render("Fig.{} from {} to {}.html".format(fig,datas[0][1],datas[-1][1]))
+    #c.render_notebook()
+data_during = get_data_during(ymd,7)
+col,max_id = get_col_max_id(data_during,12)
+plot_line_durings(data_during,camera_id=max_id, col=col)
+
+def get_jam(month):
+    congestion = {}
+    jam_info = {}
+    for d in month:
+        camera,ymd = get_data(d)
+        camera_ids = camera.keys()
+        threshold = 12
+        cam_list = []
+        for i in camera_ids:
+            c = camera[i][0]
+            name = c.name
+            roi_1 = c.data['车道1车辆数']
+            roi_1_len = len(roi_1[roi_1>=threshold])
+            roi_2 = c.data['车道2车辆数']
+            roi_2_len = len(roi_2[roi_2>=threshold])
+            if name not in congestion.keys():
+                congestion[name] = []
+            congestion[name].append(roi_1_len)
+            congestion[name].append(roi_2_len)
+            if name not in jam_info.keys():
+                jam_info[name] = {}
+            if roi_1_len != 0 or roi_2_len != 0:
+                jam_info[name][d] = (('车道1车辆数',roi_1_len),('车道2车辆数',roi_2_len),i)
+    jam_time = pd.DataFrame()
+    for n,name in enumerate(congestion.keys()):
+        jam_time.loc[n,'camera_id'] = name
+        jam_time.loc[n,'jam_time'] = np.array(congestion[name]).sum()/2
+        jam_time.loc[n,'days'] = len(jam_info[name])
+    jam_time = jam_time.sort_values(by="jam_time" , ascending=False)
+    return jam_time,jam_info
+jam_time,jam_info = get_jam(month)
+def plot_jam_days(jam_time,jam_info):
+    name = jam_time.iloc[0,0]
+    camera_id = list(jam_info[name].values())[0][2]
+    for d in jam_info[name]:
+        col = jam_info[name][d][0][0] if jam_info[name][d][0][1] > jam_info[name][d][1][1] else jam_info[name][d][1][0]
+    #print(col,jam_info[name].keys())
+    data = get_data_during(list(jam_info[name].keys()))
+    plot_line_durings(data,camera_id,col,fig=5)
+plot_jam_days(jam_time,jam_info)
+def plot_table(jam_time):
+    table = Table()
+    headers = ["排名","位置","拥堵时长（分钟）","拥堵天数"]#jam_time.columns.values.tolist()
+    rows = np.insert(jam_time.head(8).values,0,values=range(1,9),axis=1) 
+    table.add(headers, rows)
+    table.set_global_opts(
+        title_opts=ComponentTitleOpts(title="拥堵排名", subtitle="")
+    )
+    table.render("Table1.html")
+plot_table(jam_time)
+
+import json
+from pyecharts import options as opts
+from pyecharts.charts import Geo
+from pyecharts.globals import ChartType
+
+from pyecharts.globals import GeoType
+    
+def plot_geo_heatmap(ymd,index):
+    with open("all_cameras_infos.json","r",encoding="utf-8") as f:
+        cont = json.load(f)
+    camera,ymd = get_data(ymd)
+    datas = []
+    c = Geo().add_schema(maptype="china")
+    for i in cont:
+        if i['cameraId'] not in camera.keys():
+            #print(i)
+            continue
+        c.add_coordinate(i['cameraId'],i['longitude'],i['latitude'])    
+        datas.append([i['cameraId'],camera[i['cameraId']][0].data["车道1车辆数"][index]])
+    c.add(
+            "geo",
+            datas,
+            type_=ChartType.HEATMAP,
+            symbol_size=1
+        )
+    c.set_series_opts(label_opts=opts.LabelOpts(is_show=False))
+    c.set_global_opts(
+            visualmap_opts=opts.VisualMapOpts(max_=20),
+            title_opts=opts.TitleOpts(title="Geo-HeatMap")
+            )
+    c.render("gif {}.html".format(index))
+for index in list(range(0,2881,120)):
+    plot_geo_heatmap(ymd,index)
