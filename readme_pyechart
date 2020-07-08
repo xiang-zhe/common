@@ -257,7 +257,8 @@ def plot_geo_heatmap(ymd,index):
         cont = json.load(f)
     camera,ymd = get_data(ymd)
     datas = []
-    c = Geo().add_schema(maptype="china")
+    c = (Geo(init_opts=opts.InitOpts(width="480px",height="720px",bg_color="#404a59"))
+        .add_schema(center=[118.13066322374, 35.240018034923],zoom=10,itemstyle_opts=opts.ItemStyleOpts(color="#21618C", border_color="#111",opacity=0.6),))
     for i in cont:
         if i['cameraId'] not in camera.keys():
             #print(i)
@@ -265,15 +266,18 @@ def plot_geo_heatmap(ymd,index):
         c.add_coordinate(i['cameraId'],i['longitude'],i['latitude'])    
         datas.append([i['cameraId'],camera[i['cameraId']][0].data["车道1车辆数"][index]])
     c.add(
-            "geo",
+            "",
             datas,
             type_=ChartType.HEATMAP,
-            symbol_size=1
+            symbol_size=1,
+            point_size = 5,
+            blur_size = 5,
         )
-    c.set_series_opts(label_opts=opts.LabelOpts(is_show=False))
+    c.set_series_opts(label_opts=opts.LabelOpts(is_show=True),formatter="{b}")
     c.set_global_opts(
-            visualmap_opts=opts.VisualMapOpts(max_=20),
-            title_opts=opts.TitleOpts(title="Geo-HeatMap")
+            visualmap_opts=opts.VisualMapOpts(max_=20,range_color=('#66BB6A', 'yellow', 'orangered')),
+            title_opts=opts.TitleOpts(title="Geo-HeatMap"),
+            
             )
     c.render("gif {}.html".format(index))
 for index in list(range(0,2881,120)):
