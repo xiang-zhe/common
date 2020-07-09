@@ -1,0 +1,22 @@
+./configure --prefix=/mnt/lustre/zhangyihao/nginx-1.14.0/build             生成 Makefile
+make -j4              编译
+make install       安装
+
+vim conf/nginx.conf
+添加
+server {
+  listen      31389 ; #这是服务端口，如已用则需要更换
+  server_name  10.5.30.231;
+  charset utf-8;
+  root /mnt/lustre/share/lixiang_vendor/; #这是服务的内容地址
+  access_log  logs/host.access.log  main;
+  location / { 
+    autoindex on;
+    autoindex_exact_size on;
+    autoindex_localtime on;  
+    } 
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+    root   html;
+    }
+}
