@@ -6,12 +6,13 @@ np.set_printoptions(threshold=np.nan)
 Requirement already satisfied but No module named : pip的包安装路径和python的包查找路径不一致,一般是由于多个python版本导致的
   解决方案：
   
-ubuntu16.04升级python3.7时出现的问题：
+ubuntu16.04使用aptget升级python3.7时出现的问题：
   Note, selecting 'python3.7-tk' for regex 'python3.7'
   Note, selecting 'python3-tk' instead of 'python3.7-tk'
   python3-tk is already the newest version (3.6.5-3~16.04.york4).
   0 upgraded, 0 newly installed, 0 to remove and 95 not upgraded.
   解决方案：
+  官网下载源码，手动make
   
 python 默认设置
 sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1
