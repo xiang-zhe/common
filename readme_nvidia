@@ -41,7 +41,13 @@ cuda
    install...
    sudo service lightdm start
    ctrl+alt+F7 返回图形界面  
-   
+  Q：公钥问题
+  W: Failed to fetch https://nvidia.github.io/nvidia-container-runtime/ubuntu16.04/amd64/InRelease  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 6ED91CA3AC1160CD
+    curl -s -L https://nvidia.github.io/libnvidia-container/gpgkey | \
+      sudo apt-key add -
+  Q：ppa仓库不再支持，https://blog.csdn.net/qq_26093511/article/details/78754574
+  E: Failed to fetch http://ppa.launchpad.net/jonathonf/python-3.6/ubuntu/dists/xenial/main/binary-amd64/Packages  403  Forbidden [IP: 2001:67c:1560:8008::15 80]
+    sudo add-apt-repository --remove ppa:jonathonf/python-3.6
    
 cudnn
   查看cudnn版本:cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
