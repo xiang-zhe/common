@@ -1,0 +1,6 @@
+多版本kernel安装：
+  使用需要添加的版本的pip安装jupyter核，如需要3.7版本：
+  pip3.7 install ipykernel
+  python3.7 -m ipykernel install --name python3.7.8 --display-name "Python3.7.8"
+  jupyter-kernelspec list查看jupyter有哪些版本
+  
