@@ -129,6 +129,7 @@ option :
 
 Q:
 docker <19.0
+nvidia-docker ...
 sudo docker run --run-time=nvidia --name test2 -v /home/SENSETIME/lixiang_vendor/docker/:/data -it 7c4 /bin/bash
 docker >=19.0
 sudo docker run --gpus all -e NVIDIA_DRIVER_CAPABILITIES=video,compute,utility --name test2 -v /home/SENSETIME/lixiang_vendor/docker/:/data -it 7c4 /bin/bash
