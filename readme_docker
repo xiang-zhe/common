@@ -84,6 +84,10 @@ run :
   在容器中安装新的程序  
   $docker run image_name apt-get install -y app_name 
   
+docker cp
+  docker cp localfile docker_id:remotepath
+  docker cp docker_Id:remotefile localpath
+  
 image commit :
   修改环境
     docker commit --change=“ENV LANG C.UTF-8” 8a5d21dg36de new_image_name
