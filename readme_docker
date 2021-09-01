@@ -77,12 +77,18 @@ run :
   交互式进入容器中  
   $docker run -i -t image_name /bin/bash  
     exit (ctrl+d)
-    docker attach 容器ID(再次进入)/如果进不去使用docker exec -it name /bin/bash
+    docker attach 容器ID(再次进入)/如果进不去使用
+    docker exec -it name /bin/bash
     docker run --name test -it -v /home/xqh/myimage:/data ubuntu /bin/bash
     其中的 -v 标记 在容器中设置了一个挂载点 /data（就是容器中的一个目录），并将主机上的 /home/xqh/myimage 目录中的内容关联到 /data下。
 
   在容器中安装新的程序  
   $docker run image_name apt-get install -y app_name 
+  
+  在容器中挂载摄像头
+    1，sudo apt-get insatll x11-xserver-utils
+    2，xhost +（或者xhost + local：xiang）
+    3，docker run -it --rm --device=/dev/video0 -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY ...
   
 docker cp
   docker cp localfile docker_id:remotepath
