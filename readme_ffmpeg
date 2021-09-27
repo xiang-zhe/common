@@ -2,6 +2,17 @@
 查阅：
 ffmpeg -i {video}
 
+查看win10：
+  设备：
+  ffmpeg -list_devices true -f dshow -i dummy
+  查看摄像头输出格式：
+  ffmpeg -list_options true -f dshow -i video="Game Capture 4K60 Pro MK.2 Video"
+  查看摄像头输出格式：
+  ffprobe -show_format -f dshow -i video="Game Capture 4K60 Pro MK.2 Video"
+  显示摄像头：
+  ffplay -f dshow -i video="OBS Virtual Camera" 
+
+
 截图：
 bin/ffmpeg -ss 00:00:06 -i {} -f image2 -vframes 1 -y {}.jpg
 
