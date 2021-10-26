@@ -12,6 +12,10 @@ ffmpeg -i {video}
   显示摄像头：
   ffplay -f dshow -i video="OBS Virtual Camera" 
 
+查看设备：
+    ./ffmpeg -hide_banner -devices
+打开摄像头：
+
 
 截图：
 bin/ffmpeg -ss 00:00:06 -i {} -f image2 -vframes 1 -y {}.jpg
