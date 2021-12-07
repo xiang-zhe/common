@@ -36,3 +36,6 @@ ffmpeg -r 10 -i images/%d.png -b:v 1500k -vcodec wmv2 sumo.wmv
 ffmpeg -i TheOrigin.mp4 -vf  "setpts=0.25*PTS" UpTheOrigin.mp4
 减速4倍
 ffmpeg -i TheOrigin.mp4 -vf  "setpts=4*PTS" UpTheOrigin.mp4
+
+提取音频
+ffmpeg -i test.mp4 -acodec copy -vn output.aac
