@@ -142,6 +142,10 @@ find:
   sudo chown -R xiang 目录名/
   
 python虚拟环境：
+  1
+  python -m venv demo
+  source demo/bin/activate
+  2
   pip install virtualenv
   whereis python3
     /home/ssiwo/anaconda3/bin/python3
