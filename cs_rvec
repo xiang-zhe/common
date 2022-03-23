@@ -1,0 +1,3 @@
+
+https://docs.opencv.org/4.x/dd/d99/classcv_1_1Affine3.html#acfe7474211770799f56deb8b81d829f5
+rvec	3x1 rotation vector. The direction indicates the rotation axis and its length indicates the rotation angle in radian (using the right thumb convention). 
