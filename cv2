@@ -1,3 +1,11 @@
+## read camera and set prop
+cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)  ## sometimes must assign DSHOW under win 
+# print(cap.get(cv2.CAP_PROP_FPS))
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)  ## w and h must set at the same time
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)  ## w and h must set at the same time
+cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter.fourcc('M','J','P','G'))  ## this set must fellow hw and fps
+
+
 # read a pic
 import cv2 
 img = cv2.imread('./0.png') 
