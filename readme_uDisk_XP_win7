@@ -1,0 +1,29 @@
+1, systems:
+	1.1, installation is GRAY, which mean not installable
+		solve:  find winnt32.exe in folder I386 and execute in DOS
+		reason: in advanced windows system install XP
+	1.2, windows nt 4.0 is incomplatible
+		reason: in advanced windows system install XP or format of hard disk exist advanced foramt 
+		solve:  format the hard disk
+2, driver:
+	2.1 lack of drivers(include network and wlan)
+		sovle: prepared dirverGenuis.exe(with network driver)
+3, app:
+	explorer: IE not work well, Firefox Setup 52.9.0esr(https://archive.mozilla.org/pub/firefox/releases/52.9.0esr/win32/en-US/)
+	inputMethod: QQPinyin_Setup_6.6.6304.400(http://qq.pinyin.cn/download_pc.php?t=py)
+		     googlePinyin_3.0.2_32bit(http://www.qddown.com/down/2622.html)
+	decompress: 7z_32bit(https://www.7-zip.org/)
+	videoplayer£ºkmplayer(https://www.kmplayer.com/home#layer-32bit)
+		     potplayer_32(https://daumpotplayer.com/download/ 192111(https://daumpotplayer.com/wp-content/uploads/2019/12/PotPlayerSetup.exe)£»
+				http://potplayer.tv/?lang=zh_CN-the latest one not support XP)
+		     windows media player 11 seems also work
+4£¬AHCI mode:
+	4.1 AHCI for XP,
+	for btter performance of the ssd hard disk, i need change the SATA mode from ATA(eg. IDE) to AHCI.
+	but xp will blue screen if change the mode directly, so need download AHCI driver first(https://www.intel.com/content/www/us/en/download/18521/intel-rapid-storage-technology-ahci-for-windows-xp-for-intel-nuc.html)
+	and i found a scripts prepared the driver for AHCI(https://iknow.lenovo.com.cn/detail/dc_C209605.html;https://webdoc.lenovo.com.cn/lenovowsi/cskb/data/2011-06-22/C209605/AHCI_For_XP.rar)
+	decompress and replace the driver file using which was downloaded from intel.com, and install.cmd
+	install.cmd just was a temporay sulotion to preventing blue scring after changing mode to AHCI; after reboot, there will a new AHCI device was found by system, it will guide you to update driver which was that download from Intel.com.  
+	4.2 AHCI for WIN7,
+	just changing a value in regedit and rebooting work well.	
+
