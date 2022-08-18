@@ -7,7 +7,9 @@
 
 2、FastGF
   2.1、references
-  2.2、what difference is that using bilinear resizing to calcutate the final parameters a and b instead of the mean 
+  2.2、what difference is that，
+    first， using high resolution size calculate the parameters a and b
+    then， using bilinear to resize the final parameters a and b to high resolution instead of the mean of high resolution. 
 
 3、DGF
   3.1、references
