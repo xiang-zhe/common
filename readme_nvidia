@@ -26,7 +26,13 @@ cuda 版本之间的切换：本来已经安装好了，测试过没有问题，
     sudo ln -s libcurand.so.9.0 libcurand.so.8.0
     依次修改这5项libcublas libcusolver...
     https://stackoverflow.com/questions/46595292/virtualenv-tensorflow-with-nvidia-gpu-cuda-9-0-vs-cuda-8-0-cudnn-7-0-vs-cudnn
-
+cuda nvcc 显示是老版本的，
+  which nvcc
+  >>>>/usr/bin/nvcc
+  cat /usr/bin/nvcc
+  >>>>exec /usr/lib/nvidia-cuda-toolkit/bin/nvcc
+  sudo vi /usr/bin/nvcc
+  >>>>exec /usr/local/cuda/bin/nvcc
 
 cuda
   查看cuda版本:cat /usr/local/cuda/version.txt
