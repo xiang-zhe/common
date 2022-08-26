@@ -124,7 +124,8 @@ Get:23 http://us-east-1.ec2.archive.ubuntu.com/ubuntu xenial/multiverse amd64 Pa
   ls | wc -c 文件数 ls -lR |grep "^-"| grep ".jpg" |wc -l 
   
   ls -lR| grep "^d" | wc -l 子文件夹数
-  ls -lR |grep "^-"| grep ".jpg" |wc -l
+  ls -lR |grep "^-"| wc -l 子文件数
+  ls -lR |grep "^-"| grep ".jpg" |wc -l 子文件中jpg的数量
   
 查看传输速度和状态：
   dstat
