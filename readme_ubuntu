@@ -80,6 +80,9 @@ linux 远程操作
     文件夹尾加jelline：rename 's/$/jelline/' *
     将所有*.nc文件中Sam3替换成Stm32：rename -v 's/Sam3/Stm32/' *.nc
     ''里面是正则，s表示替换，
+    -v(verbose)打印被成功重命名的文件
+    -n(no-act)只显示将被重命名的文件，而非实际进行重命名操作
+    -f(force)覆盖已经存在的文件
     
   ubuntu写入时不加sudo时，权限只能写入/home/ssiwo/
   
