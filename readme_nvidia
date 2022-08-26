@@ -57,6 +57,8 @@ cuda
   Q：ppa仓库不再支持，https://blog.csdn.net/qq_26093511/article/details/78754574
   E: Failed to fetch http://ppa.launchpad.net/jonathonf/python-3.6/ubuntu/dists/xenial/main/binary-amd64/Packages  403  Forbidden [IP: 2001:67c:1560:8008::15 80]
     sudo add-apt-repository --remove ppa:jonathonf/python-3.6
+  卸载nvidia cuda toolkit
+  apt-get --purge remove "*cublas*" "cuda*" 
    
 cudnn
   查看cudnn版本:cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
