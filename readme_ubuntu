@@ -70,6 +70,8 @@ linux 远程操作
     scp -r /home/ssiwo/D1/20180621/10/ ubuntu@192.168.3.81:~/images/images_data_1/ 
   断点续传：
     rsync  -av  --bwlimit=50000  --progress --inplace /media/ubuntu/newharddisk root@192.168.3.120:/mnt/data2
+  上传
+    rsync -P --rsh='ssh -p 2200' /data/myfile user@openthings.x.x.x:/data/
   
   wget -c  --http-user=username --http-password=password URL 下载断点续传
   
