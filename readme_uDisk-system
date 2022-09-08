@@ -1,3 +1,10 @@
+## windows activation
+  key: https://www.kms.pub/index.html
+  1, wmic os get caption
+  2, slmgr /ipk xxxxx-xxxxx-xxxxx-xxxxx
+  3, slmgr /skms win.kms.pub
+  4, slmgr /ato
+
 使用ultraISO直接写入时隐藏/高端隐藏启动盘就好了。。。
 下面的都不需要了
   第一步：将U盘中的系统导出到电脑备份
