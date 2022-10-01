@@ -1,3 +1,10 @@
+ffmepg
+  -codec == -c
+        Select an encoder (when used before an output file) or a decoder (when used before an input file) for one or more streams. 
+        codec is the name of a decoder/encoder or a special value copy (output only) to indicate that the stream is not to be re-encoded.
+  -vcodec == -codec:v == -c:v
+  -acodec == -codec:a == -c:a
+
 参考：https://www.jianshu.com/p/4f399b9dfb43
 查阅：
 ffmpeg -i {video}
@@ -37,5 +44,26 @@ ffmpeg -i TheOrigin.mp4 -vf  "setpts=0.25*PTS" UpTheOrigin.mp4
 减速4倍
 ffmpeg -i TheOrigin.mp4 -vf  "setpts=4*PTS" UpTheOrigin.mp4
 
-提取音频
-ffmpeg -i test.mp4 -acodec copy -vn output.aac
+音频处理
+  1.1.提取音频
+  ffmpeg -i test.mp4 -acodec copy -vn output.aac
+    -acodec copy 复制音频
+    -vn 命令删除视频
+  1.2.提取音频并重新编码
+  ffmpeg -i videoWithAudio.mp4 -vn -c:a libmp3lame -q:a 1 onlyAudio.mp3
+    -c:a == -acodec
+    libmp3lame 命令将音频编码为不同的质量，-q:a表示质量，范围为0~6，其中0表示高质量音频
+  2.删除音频（只将视频复制到一个新的文件中，而不复制音频）
+  ffmpeg -i videoWithAudio.mp4 -c:v copy -an videoWithoutAudio.mp4
+    -c:v copy 命令复制视频
+    -an 命令删除音频
+  3.添加音频
+  ffmpeg  -i video.mp4 -i audio.mp3 -c copy -map 0:v:0 -map 1:a:0 videoWithAudio.mp4
+    -c copy同时复制音轨和视轨到输出文件
+    -map 命令用法input_file_index:stream_type_specifier:stream_index
+      例如：-map 1:a:2来选择第二个输入文件中的第三个音轨，因为计数从0开始
+    -map 0:v:0 选择了第0个输入文件的（视频输入）的第0个轨道。
+    –map 1:a:0 选择了第一个输入文件的（音频输入）的第0个轨道
+  4.替换视频中的音频
+  ffmpeg -i video_with_audio.mp4 -i newAudio.wav -map 0:0 -map 1:0 -c:v copy -c:a libmp3lame -q:a 1 -shortest video_with_newAudio.mp4
+    -shortest 命令用于确保当达到较短的输入文件（两个输入文件之一）长度时停止转换
