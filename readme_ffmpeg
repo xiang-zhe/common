@@ -62,10 +62,14 @@ ffmpeg -i TheOrigin.mp4 -vf  "setpts=4*PTS" UpTheOrigin.mp4
     -c copy同时复制音轨和视轨到输出文件
     -map 命令用法input_file_index:stream_type_specifier:stream_index
       例如：-map 1:a:2来选择第二个输入文件中的第三个音轨，因为计数从0开始
+      另外还有绝对流表示方式，不指定流类型
+        -map 0:0  第一个输入文件的第一个流
+        -map 1:3  第二个输入文件的第四个流
     -map 0:v:0 选择了第0个输入文件的（视频输入）的第0个轨道。
     –map 1:a:0 选择了第一个输入文件的（音频输入）的第0个轨道
-    反向的map命令（在map命令的参数前加负号）。使用-map -0:a:0 这一命令，FFmpeg在选择时就会忽略第一个音轨
+    减法map命令（在map命令的参数前加负号）。使用-map -0:a:0 这一命令，FFmpeg在选择时就会忽略第一个音轨
         例如 ffmpeg -i videoWithAudio.mp4 -map 0 -map -0:a videoWithoutAudio.mp4同样是删除音频的效果
+        -map 0 -map -0:s  将从输入索引 #0（第一个输入）中选择除字幕之外的所有流。-指负映射。
   4.替换视频中的音频
   ffmpeg -i video_with_audio.mp4 -i newAudio.wav -map 0:0 -map 1:0 -c:v copy -c:a libmp3lame -q:a 1 -shortest video_with_newAudio.mp4
     -shortest 命令用于确保当达到较短的输入文件（两个输入文件之一）长度时停止转换
