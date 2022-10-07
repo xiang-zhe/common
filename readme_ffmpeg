@@ -28,7 +28,13 @@ ffmpeg -i {video}
 bin/ffmpeg -ss 00:00:06 -i {} -f image2 -vframes 1 -y {}.jpg
 
 截取视频：
-bin/ffmpeg -i '{}' -ss 00:01:00 -to 00:01:05 -c copy {}
+  bin/ffmpeg -i '{}' -ss 00:01:00 -to 00:01:05 -c copy {}
+  精确时间剪切：
+  ffmpeg -ss 00:00:44 -to 00:01:24 -accurate_seek -i '.mkv' -c copy -avoid_negative_ts 1 44_124.mkv
+    -ss -t -to在-i 之前可以避免开头黑屏
+    -accurate_seek 精确时间
+    -avoid_negative_ts 1 使用copy编码时候加上这个参数
+  
 
 转码：
 ffmpeg -i out.ogv -vcodec h264 out.mp4  -vcodec 后面是编码格式，h264 最佳，但Windows不安装。如是 ppt 的视频，选择 wmv1 或 wmv2
