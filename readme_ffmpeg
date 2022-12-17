@@ -23,6 +23,17 @@ ffmpeg -i {video}
     ./ffmpeg -hide_banner -devices
 打开摄像头：
 
+cuda：
+  查看是否支持cuda：
+    ffmpeg -hwaccels
+  -hwaccel cuvid：
+    使用cuda处理
+  -hwaccel_device 0：
+    指定gpu索引
+  -c:v h264_cuvid：
+    使用h264_cuvid进行视频解码
+  -c:v h264_nvenc：
+    使用h264_nvenc进行视频编码
 
 截图：
 bin/ffmpeg -ss 00:00:06 -i {} -f image2 -vframes 1 -y {}.jpg
