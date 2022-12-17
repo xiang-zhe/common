@@ -79,3 +79,10 @@ ffmpeg -i TheOrigin.mp4 -vf  "setpts=4*PTS" UpTheOrigin.mp4
   4.替换视频中的音频
   ffmpeg -i video_with_audio.mp4 -i newAudio.wav -map 0:0 -map 1:0 -c:v copy -c:a libmp3lame -q:a 1 -shortest video_with_newAudio.mp4
     -shortest 命令用于确保当达到较短的输入文件（两个输入文件之一）长度时停止转换
+    
+滤波器
+  ffmpeg -stream_loop -1 -i "1.mp4" -i "2.mp4"  -stream_loop -1 -i "3.mp4" -filter_complex vstack=inputs=3 -map 0:v -map 1 -map 2:v -shortest vstack.mp4
+    -filter_complex vstack=inputs=3 垂直叠加vstack
+    -stream_loop -1 放在输入前，-1表示无限循环，-loop好像也是一样的
+    -shortest 输入最短结束 -longest
+    -t 60 表示循环到60s
