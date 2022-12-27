@@ -1,0 +1,7 @@
+函数f(x)，增量Δx下，Δy为f(x)的增量：
+  导数：即切线，x0初的变化率，f'(x) = Δy/Δx（Δx逼近0）
+  微分：切线的增量即微分，dy = f'(x)Δx
+  积分：区间和x轴围成的面积，∫f(x)·dx，
+
+reference：
+  https://blog.csdn.net/m0_37827994/article/details/85004004
