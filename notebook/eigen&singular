@@ -7,4 +7,5 @@ defination：
   如果存在单位正交矩阵U和V，使得A=UΣV`, Σ为对角矩阵，对角线上的值被称为奇异值，U和V中的列分别被称为A的左奇异向量和右奇异向量。
   
 reference：
-  https://zhuanlan.zhihu.com/p/353637184
+  https://zhuanlan.zhihu.com/p/353637184（特征值和奇异值）
+  https://zhuanlan.zhihu.com/p/411758474（矩阵的几何意义）
