@@ -6,12 +6,37 @@ class CV2FUNC:
         pass
     
     @staticmethod
-    def cv2show(im,w=1280,h=720):
+    def cv2show(im,w=1280,h=720,waittime=0):
         cv2.namedWindow("im", cv2.WINDOW_NORMAL)
         cv2.resizeWindow("im", w, h)
         cv2.imshow("im", im)
-        if cv2.waitKey(0)& 0xFF==27:
+        if cv2.waitKey(waittime)& 0xFF==27:
             cv2.destroyAllWindows()
+    @staticmethod
+    def cv2writevideo(path, fourcc=None, fps=30, w=1920, h=1080):
+        if fourcc is None:
+            fourcc = cv2.VideoWriter_fourcc(*'MJPG')
+
+            #fourcc = cv2.VideoWriter_fourcc(*'XVID')
+        return cv2.VideoWriter(path, fourcc, fps, (w, h))
+
+    @staticmethod
+    def cv2mat(im):
+        return cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+    
+    @staticmethod
+    def getThreshold(im):
+        return cv2.threshold(im, 128, 255, cv2.THRESH_BINARY)[1]
+    
+    @staticmethod
+    def getContours(im):
+        ret, thresh = cv2.threshold(im, 128, 255, cv2.THRESH_BINARY)
+        contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        return contours
+    
+    @staticmethod
+    def getCanny(im):
+        return cv2.Canny(im, 100, 200)
 
     @staticmethod
     def cv2puttext(im,context="none", position=None, color=(255,255,255),font=cv2.FONT_HERSHEY_SIMPLEX, font_scale=0.5, font_thickness=1):
@@ -72,4 +97,3 @@ class CV2FUNC:
 
 
 
-  
