@@ -1,0 +1,11 @@
+
+1，熵
+  1.1， 离散变量 i 的概率分布P(i)，熵的公式： entropy = -ΣP(i)logP(i)
+  1.2， 真实概率分布P和假设概率分布Q，则交叉熵: H(P,Q) = -ΣP(i)logQ(i)
+      二分类交叉熵：BinaryCrossEntropy = -PlogQ-(1-P)log(1-Q)
+2，KL离散度（Kullback-Leibler Divergence ）
+  衡量两个分布的差异程度，KL值越小，差异越小；
+  两个概率分布P和Q，KL离散度：D-KL(P||Q) = ΣP(i)log(P(i)/Q(i))
+  通常在概率和统计中，我们会用更简单的近似分布来代替观察到的数据或复杂的分布。KL散度帮助我们衡量在选择近似值时损失了多少信息。
+  
+  
