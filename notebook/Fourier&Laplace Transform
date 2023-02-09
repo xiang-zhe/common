@@ -9,3 +9,4 @@ F(s) = L[f(t)] = ∫f(t)·e^(-st)·dt（0,+∞），其中s=σ+iw；即∫f(t)·
 reference：
   https://zhuanlan.zhihu.com/p/40783304
   https://zhuanlan.zhihu.com/p/152647974
+  https://zhuanlan.zhihu.com/p/149528521
