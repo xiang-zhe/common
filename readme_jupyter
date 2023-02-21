@@ -1,0 +1,10 @@
+jupyter notebook服务器版远程使用
+  1，服务器输入：
+    jupyter notebook --no-browser --port=8889
+  2，本地输入：
+    ssh -N -f -L localhost:8888:localhost:8889 username@serverIP
+       -N 告诉SSH没有命令要被远程执行； -f 告诉SSH在后台执行； -L 是指定port forwarding的配置，远端端口是8889，本地的端口号的8888。
+  3，本地浏览器输入：
+    localhost:8888
+      如需token，则需要到服务器端查找：
+        jupyter notebook list
