@@ -1,3 +1,15 @@
+python虚拟环境：
+  1
+  python -m venv demo
+  source demo/bin/activate
+  2
+  pip install virtualenv
+  whereis python3
+    /home/ssiwo/anaconda3/bin/python3
+  virtualenv -p /home/ssiwo/anaconda3/bin/python3 venv_LX
+  source venv_LX/bin/activate　
+  . venv_LX/bin/deactivate
+  
 narray数组在socket传过程中不是c contiguous可以有使用
   np.ascontiguousarray（）转化
   或者使用zmq传输图像，见tool-zmq函数
