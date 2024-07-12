@@ -17,7 +17,7 @@ normal：
       跳到第十行
     :5,.d
       删除第5行到当前行（10行）
-    /path 向下查找path   ？ path 向上查找path
+    /path 向下查找path   ？ path 向上查找path 按n下一个，N上一个
     替换： s/target/new      https://blog.csdn.net/smilefxx/article/details/84061268
 
 v模式：
