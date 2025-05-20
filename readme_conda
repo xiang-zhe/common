@@ -16,3 +16,6 @@ conda
     3，复制pip的包到$ 
       cp -r /usr/local/lib/python2.7/dist-packages/folium /home/mrlevo/anaconda2/lib/python2.7/site-packages/foliumanaconda包的路径下
     
+
+conda env list
+conda list python 
